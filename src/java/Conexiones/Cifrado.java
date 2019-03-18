@@ -5,48 +5,54 @@
  */
 package Conexiones;
 
-import java.security.*;
-import java.security.spec.InvalidKeySpecException;
-import javax.crypto.*;
+import Entidades.Guia;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import sun.misc.*;
+import static org.apache.commons.codec.binary.Base64.decodeBase64;
+import static org.apache.commons.codec.binary.Base64.encodeBase64;
 
 public class Cifrado {
-    private static final String Algo = "AES";
-    private static final byte[] keyValue = new byte [] {'J','a','i','m','e','M','i',
-    'n','o','r','G','o','m','e','z','1',};
+        private final static String alg = "AES";
+        private final static String cI = "AES/CBC/PKCS5Padding";
+        private final static String key = "MSJCYEBFOPVESHFZ"; // llave ovi :p
+        private final static String iv = "0123456789ABCDEF"; // vector de inicialización
     
-    public static String cifrado(String Data) throws Exception{
-        Key key = generateKey(keyValue); 
-        // Este es para las subllaves del AES
-        Cipher c = Cipher.getInstance(Algo);
-        c.init(Cipher.ENCRYPT_MODE, key);
-        //Aqui paso las subllaves para cifrar
-        byte[] cifrarvalores = c.doFinal(Data.getBytes());
-        /*La libreria Sun me sirve para poder codificar los bloques del cifrado en base 
-        64*/
-        String CifradoValor = new BASE64Encoder().encode(cifrarvalores);
-        return CifradoValor;
+    public static String decrypt(String textoACifrar) throws Exception {
+        Cipher cipher = Cipher.getInstance(cI);
+        SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), alg);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
+        byte[] enc = decodeBase64(textoACifrar);
+        cipher.init(Cipher.DECRYPT_MODE, skeySpec, ivParameterSpec);
+        byte[] decrypted = cipher.doFinal(enc);
+        return new String(decrypted);
+    }
+
+    // esto depende de si conservamos el inicio o lo medificamos
+    public static String encrypt(String textoADescifrar) throws Exception {
+        Cipher cipher = Cipher.getInstance(cI);
+        SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), alg);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
+        cipher.init(Cipher.ENCRYPT_MODE, skeySpec, ivParameterSpec);
+        byte[] encrypted = cipher.doFinal(textoADescifrar.getBytes());
+        return new String(encodeBase64(encrypted));
     }
     
-    public static String descifrado(String cifrado) throws Exception{
-        Key key = generateKey(keyValue); 
-        // Este es para las subllaves del AES
-        Cipher c = Cipher.getInstance(Algo);
-        c.init(Cipher.DECRYPT_MODE, key);
-        //Aqui paso las subllaves para descifrar
-        /*La libreria Sun me sirve para poder decodificar los bloques del DEScifrado en base 
-        64*/
-        
-        byte[] decoficadorvalores = new BASE64Decoder().decodeBuffer(cifrado);
-        byte[] descifradorValor = c.doFinal(decoficadorvalores);
-        
-        String descifrado = new String(descifradorValor);
-        return descifrado;
-    }
-      
-    private static Key generateKey(byte [] ll) throws Exception {
-        Key key = new SecretKeySpec(ll, Algo);
-        return key;
-    }
+    
+    public Guia cifGuia(Guia guia) {
+        try {
+            guia.setNombre(encrypt(guia.getNombre()));
+            guia.setApellidoP(encrypt(guia.getApellidoP()));
+            guia.setApellidoM(encrypt(guia.getApellidoM()));
+            guia.setCURP(encrypt(guia.getCURP()));
+            guia.setDir(encrypt(guia.getDir()));
+            guia.setRFC(encrypt(guia.getRFC()));
+            guia.setPassword(encrypt(guia.getPassword()));
+            
+        } catch (Exception e) {
+            System.err.println("error al cifrar: "+ e.getMessage());
+        }        
+        return guia;
+    } 
+    
 }

@@ -7,15 +7,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Easy Tour</title>
+<head>
+	<title>Easy Tour</title>
 	<link rel="stylesheet" type="text/css" href="CSS/index.css">
 	<link rel="stylesheet" type="text/css" href="CSS/fuentes.css">
 	<link rel="stylesheet" type="text/css" href="CSS/footer.css">
         <link rel="shortcut icon" type="image/x-icon" href="/images/icon1.ico" />
-    </head>
-    <body>
-       <div id="background">
+</head>
+<body>
+
+	<div id="background">
 							
 		<header>
 			
@@ -233,5 +234,5 @@
 
 	</footer>
 
-    </body>
+</body>
 </html>
