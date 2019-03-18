@@ -6,6 +6,7 @@
 package Conexiones;
 
 import Entidades.Guia;
+import Entidades.Turista;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -53,6 +54,19 @@ public class Cifrado {
             System.err.println("error al cifrar: "+ e.getMessage());
         }        
         return guia;
-    } 
+    }
+    
+    public Turista cifTurista(Turista turista) {
+        try {
+            turista.setNombre(encrypt(turista.getNombre()));
+            turista.setApellidoP(encrypt(turista.getApellidoP()));
+            turista.setApellidoM(encrypt(turista.getApellidoM()));
+            turista.setPassword(encrypt(turista.getPassword()));
+            
+        } catch (Exception e) {
+            System.err.println("error al cifrar: "+ e.getMessage());
+        }        
+        return turista;
+    }
     
 }

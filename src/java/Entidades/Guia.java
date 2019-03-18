@@ -11,7 +11,23 @@ package Entidades;
  */
 public class Guia {
     String nombre, apellidoP, apellidoM, correo, password, CURP, RFC, dir;
-    int telefono;
+    int telefono, edad, calificacion;
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
 
     public String getNombre() {
         return nombre;
