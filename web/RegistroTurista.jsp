@@ -69,7 +69,7 @@
 
 				</div>
 
-				<form name="Registro_Turista" method="post" action="Registro.jsp">
+				<form name="Registro_Turista" method="post" action="registros">
 
 					<div>
 						<input type="text" id="Nombre" placeholder="Nombre(s)" name="Nombre_Turista">

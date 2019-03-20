@@ -5,6 +5,9 @@
  */
 package Servlets;
 
+import Conexiones.Consultas;
+import Entidades.Guia;
+import Entidades.Turista;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,66 +23,41 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "registros", urlPatterns = {"/registros"})
 public class registros extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet registros</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet registros at " + request.getContextPath() + "</h1>");
-            out.println("<h1>Servlet registros at " + request.getRequestURI()+ "</h1>");
-            out.println("<h1>Servlet registros at " + request.getRequestURL()+ "</h1>");
-            out.println("<h1>Servlet registros at " + request.getServletPath()+ "</h1>");
-            out.println("<h1>Servlet registros at " + request.getCookies() + "</h1>");
-            out.println("<h1>Servlet registros at " + request.getPathInfo() + "</h1>");
-            out.println("<h1>Servlet registros at " + request.getPathTranslated() + "</h1>");
-            out.println("<h1>Servlet registros at " + request.getParts()+ "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Consultas con = new Consultas();
+        if (request.getParameter("Nombre_Guia") != null) {
+            Guia guia = new Guia();
+            guia.setNombre(request.getParameter("Nombre_Guia"));
+            guia.setApellidoP(request.getParameter("ApellidoP"));
+            guia.setApellidoM(request.getParameter("ApellidoM"));
+            guia.setCURP(request.getParameter("CURP"));
+            guia.setCorreo(request.getParameter("Correo_Guia"));
+            guia.setPassword(request.getParameter("Password"));
+            guia.setRFC(request.getParameter("RFC"));
+            guia.setTelefono(Integer.parseInt(request.getParameter("Telefono_Guia")));
+            guia.setDir(request.getParameter("Direccion_Guia"));
+            if (con.registrarGuia(guia)) {
+                response.sendRedirect("index.jsp");
+            } else {
+                System.out.println("error");
+                //response.sendRedirect("index.jsp");
+            }
+        } else {
+            Turista turista = new Turista();
+            turista.setNombre(request.getParameter("Nombre_Turista"));
+            turista.setApellidoP(request.getParameter("ApellidoP_Turista"));
+            turista.setApellidoM(request.getParameter("ApellidoM_Turista"));
+            turista.setCorreo(request.getParameter("Correo_Turista"));
+            turista.setPassword(request.getParameter("PSW_Confirmacion"));
+            if (con.registrarTurista(turista)) {
+                response.sendRedirect("index.jsp");
+            } else {
+                System.out.println("error");
+            }
+        }
     }
 
     /**
