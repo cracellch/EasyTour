@@ -19,6 +19,10 @@ public class Validaciones {
          return true;
      }
     
+    public boolean validarString(String cadena){
+         return true;
+     }
+    
     public boolean validarGuia(Guia guia){
          return true;
      }

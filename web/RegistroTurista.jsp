@@ -68,8 +68,8 @@
 					</h2>
 
 				</div>
-
-				<form name="Registro_Turista" method="post" action="registros">
+                            
+				<form name="Registro_Turista" method="post" action="registros.jsp">
 
 					<div>
 						<input type="text" id="Nombre" placeholder="Nombre(s)" name="Nombre_Turista">

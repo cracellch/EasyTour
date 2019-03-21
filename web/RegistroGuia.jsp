@@ -69,7 +69,7 @@
 
 				</div>
 
-				<form name="formulario_guia" method="post" action="registros">
+				<form name="formulario_guia" method="post" action="registros.jsp">
 
 					<div>
 						<input type="text" id="Nombre" placeholder="Nombre(s)" name="Nombre_Guia">

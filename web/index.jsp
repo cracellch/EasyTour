@@ -63,7 +63,7 @@
 
 			<article id="formularioInicio">
                             
-				<form name="Inicio" method="post" id="login" action="Sesion.jsp">
+				<form name="Inicio" method="post" id="login" action="login.jsp">
 
 					<div id="iniTit">
 						Iniciar sesi&oacute;n
