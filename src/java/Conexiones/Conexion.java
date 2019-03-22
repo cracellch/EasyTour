@@ -18,7 +18,7 @@ public class Conexion {
         String cadena="jdbc:mysql://localhost:3306/et_bd"; 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(cadena,"root","n0m3l0");
+            con = DriverManager.getConnection(cadena,"root","cotibola");
             System.out.println("conex");
         } catch (ClassNotFoundException ex) {
             System.out.println("error en conex");
