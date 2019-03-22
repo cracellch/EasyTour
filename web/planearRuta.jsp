@@ -14,6 +14,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script src="JS/form_ruta.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="CSS/planearRuta.css"/>
+        <link rel="stylesheet" href="CSS/fuentes.css"/>
     </head>
     <body>
     <%
@@ -79,7 +82,7 @@
                     <article id="titRut">
 
                         <h1>
-                            Ruta de <%=lugar %>
+                            Ruta de <%=ubicacion %>
                         </h1>
 
                     </article>
