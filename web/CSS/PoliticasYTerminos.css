@@ -1,0 +1,163 @@
+*{
+
+	margin: 0 auto;
+	padding: 0;
+
+}
+
+html, body{
+
+	height: 100%;
+	width: 100%;
+
+}
+
+body{
+
+	width: 100%;
+	height: 100%;
+	background-image: url('../RESOURCE/fondos/Terminos.PNG');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+}
+
+
+header{
+
+	width: 100%;
+	height: 8%;
+	background: rgba(0,0,0,0.5);
+
+}
+
+header > nav{
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	float: right;
+	height: 100%;
+	width: 400px;
+
+}
+
+header > nav > *{
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+header > nav > ul{
+
+	width: 400px;
+	height: 25px;
+
+}
+
+header > nav > ul > li{
+
+	margin-left: 15px;
+	margin-right: 15px;
+	list-style: none;
+	text-decoration: none;
+	width: 97;
+	height: 25px;
+
+}
+
+header > nav > ul > li > div{
+
+	width: 100%;
+	height: 5px;
+
+}
+
+header > nav > ul > li > a{
+	
+	text-decoration: none;
+	color: white;
+	font-family: KeepCalm-Medium;
+
+}
+
+header > nav > ul > li:hover > a{
+
+	color: #788FBC;
+
+}
+
+header > nav > ul > li:hover > div{
+	
+	background-color: #FF8300;
+
+}
+
+form{
+
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+}
+
+img{
+
+	width: 20px;
+	height: 20pX;
+	background-color: white;
+
+}
+
+h1{
+
+	font-size: 2.5em;
+        color:#FFFFFF;
+}
+
+h2{
+
+	font-size: 1.7em;
+        color:#FFFFFF;
+}
+
+h3{
+        
+	font-size: 1.4em;
+        color:#FFFFFF;
+}
+
+h4{
+
+	font-size: 1em;
+        color:#FFFFFF;
+}
+
+h5{
+
+	font-size: 0.8em;
+        color:#FFFFFF;
+
+}
+
+h6{
+
+	font-size: 0.6em;
+        color:#FFFFFF;
+
+}
+
+div{
+        margin: 10%;
+        background-color:#5E5E5E;
+        opacity:0.6;
+        filter:alpha(opacity=60); /* IE < 9.0 */
+        position: fixed;
+        border-radius: 3%;
+        box-shadow: 0 0 20px #802A2A;
+}
