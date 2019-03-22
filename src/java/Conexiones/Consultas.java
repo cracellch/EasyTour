@@ -128,6 +128,7 @@ public class Consultas extends Conexion{
             finally{
                 try {
                     if(pst != null) pst.close();
+                    if(rs != null) rs.close();
                     if(getConexion() != null) getConexion().close();
                 } catch (Exception ex) {
                     System.err.println("error: " + ex.toString());
@@ -142,6 +143,36 @@ public class Consultas extends Conexion{
         ArrayList<Lugar> lugares = new ArrayList<Lugar>();
         PreparedStatement ps= null;
         ResultSet rs= null;
+        try {
+           String exp = "select * from lugar where ubi_lug = '"+ubicacion+"'";
+            System.out.println("exp: "+exp);
+            System.out.println(ubicacion);
+            ps= con.prepareStatement(exp);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                Lugar l = new Lugar();
+                l.setId(Integer.parseInt(rs.getString(1)));
+                l.setNombre(rs.getString(2));
+                System.out.println(l.getNombre());
+                l.setUbicacion(rs.getString(3));
+                l.setDescripcion(rs.getString(4));
+                l.setImagen(rs.getString(5));
+                l.setDuracion(rs.getString(6));
+                lugares.add(l);
+            }
+        } catch (Exception e) {
+            System.err.println("error: "+e.toString());
+        }
+        finally{
+                try {
+                    if(ps != null) ps.close();
+                    if(rs != null) rs.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+        }
         return lugares;
     }
  
