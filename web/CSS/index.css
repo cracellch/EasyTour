@@ -18,6 +18,48 @@ body{
 
 }
 
+#modal{
+    
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 10;
+    visibility: hidden;
+    
+}
+
+#cerrar-modal{
+    
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    display: flex;
+    top: 2%;
+    left:91%;
+    z-index: 100;
+    background-image: url(../RESOURCE/iconos/X.png);
+    background-repeat: no-repeat;
+    
+}
+
+#terminos{
+    
+    height: 90%;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    background-color: #E1E2E3;
+    color: #000000; 
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 5px;
+    
+}
+
 div#background{
 
 	width: 100%;
@@ -100,6 +142,13 @@ header > nav > ul > li:hover > div{
 	background-color: #FF8300;
 
 }
+
+ol.politicaslista{
+    font-size: .6em;
+    margin-left:40px;
+}
+
+
 
 form{
 
@@ -541,4 +590,12 @@ a#Registrar:hover {
 	float: left;
 	text-align: justify;
 
+}
+
+
+table.servicios{
+        font-size:.7em;
+        text-align: center;
+        border-spacing: 30px 2px;
+        
 }

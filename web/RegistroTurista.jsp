@@ -37,7 +37,7 @@
 					</li>
 
 					<li>
-						<a href="RegGui.jsp">
+						<a href="RegistroGuia.jsp">
 							Registro Guia
 							<div></div>
 						</a>

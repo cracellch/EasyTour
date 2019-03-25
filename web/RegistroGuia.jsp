@@ -37,7 +37,7 @@
 					</li>
 
 					<li>
-						<a href="RegTur.jsp">
+						<a href="RegistroTurista.jsp">
 							Registro Usuario
 							<div></div>
 						</a>

@@ -13,9 +13,103 @@
 	<link rel="stylesheet" type="text/css" href="CSS/fuentes.css">
 	<link rel="stylesheet" type="text/css" href="CSS/footer.css">
         <link rel="shortcut icon" type="image/x-icon" href="/images/icon1.ico" />
+        <script type="text/javascript" src="JS/indexValidacion.js"></script>
 </head>
 <body>
+        
+    <div id="modal" onClick="cerrarModal();">
+        
+        <div id="terminos">
+            <h4>Service Level Agreements and Privacy Policies</h4><br>
+                    <h5>Introductoria </h5>
+                    <h6>En el presente documento se da por entendido que el usuario que acepte los términos y condiciones del servicio proporcionado por Easy Tour dará por hecho que ha leído la presente acta y está de acuerdo con lo establecido en el apartado II,III y V. A su vez este recibe el nombre de CLIENTE y la empresa de nombre Maydas como PROVEEDOR para fines prácticos.
+                        Queda entendido que los datos personales necesarios para la realización de las tareas establecidas en el apartado II serán salvaguardados por la empresa y si es necesario por motivos legales serán divulgadas a las autoridades competentes de así requerirse.
+                    </h6>
+                    <br>
+                    <h5>Descripciones del servicio</h5>
+                    <h6>El servicio prestado por PROVEEDOR a CLIENTE y el cual se encuentra vinculado el siguiente acuerdo consiste en el soporte telefónico en relación al software Easy Tour.
+                        Dentro de este servicio se encuentran las siguientes tareas:
+                        Atención telefónica por fallo del software tipo Turista: se da por entendido por fallo de software a : el mal manejo de los datos al ingreso del sistema, fallo por incompatibilidad de drivers, fallo por versiones móviles  no compatibles, errores en inicio de sesiones(olvido de contraseña, autenticación vía correo electrónico).
+                        Atención telefónica por fallo de software tipo Guía: se da por entendido por fallo de software a: fallo en la monetización de los tour realizados por el guia, fallo en versiones móviles no compatibles, errores en autenticación al sistema (olvido de contraseña, autenticación via correo electrónico)
+                    </h6>
+                    <br>
+                    <h5>Nivel Tecnico</h5>
+                    <h6>
+                        La disponibilidad de las tareas descritas en el apartado II serán según lo indica la siguiente tabla:
+                    </h6>
+                    <br>    
+                    <table class="servicios">
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Nivel de servicio</th>
+                            <th>Tiempo de respuesta aproximado</th>
+                            <th>Tiempo de solucion aproximado</th>
+                            <th>Disponibilidad de horario</th>
+                        </tr>
+                        <tr>
+                            <td>Atención telefónica por fallo de software tipo Turista</td>
+                            <td>Medio</td>
+                            <td>2hrs</td>
+                            <td>2hrs</td>
+                            <td>10hrs/24hrs</td>
+                        </tr>
+                        <tr>
+                            <td>Atención telefónica por fallo de software tipo Guia</td>
+                            <td>Alto</td>
+                            <td>1hr</td>
+                            <td>1hr</td>
+                            <td>18hrs/24hrs</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <h6>
+                        Sobre la continuidad de los servicios establecidos en el presente documento se reitera que la empresa guardará la incidencia
+                        para futuros contratiempos similares o iguales con el pleno consentimiento del denominado CLIENTE. A su vez el PROVEEDOR se 
+                        compromete a tener una continuidad del problema de 5 horas a partir de la solución del mismo, de persistir el problema 
+                        se atenderá con un nivel de prioridad superior.
+                    </h6>
+                    <br>
+                    <h6>
+                        Sobre el deslinde de responsabilidades. Maydas no se hace responsable por: daños físicos y/o morales durante el recorrido, 
+                        mal uso de la aplicación con fines de mercadeo o de lucro, incidentes mayores durante el recorrido.
+                    </h6>
+                    <br>
+                    <h6> 
+                        Sobre el fallo del servicio proporcionado. De no 
+                        poderse llevar a cabo el servicio o ser interrumpido en el acto, Maydas se compromete a reembolsar el dinero del CLIENTE 
+                        siempre y cuando no se cumplan los siguientes 
+                        sucesos: desastre natural, desastre social, incidentes mayores o de gravedad, eventos políticos, sociales, militares, policiales o navales.
+                    </h6>
+                    <h6>
+                        Se entiende por incidentes mayores o de gravedad a: daños de salud, atropellos, asaltos, asesinatos, secuestros, balas perdidas, 
+                        eventos causados por enfermedades psicológicas como la esquizofrenia o locura de cualquier tipo, accidentes automovilísticos, 
+                        accidentes en el transporte público o privado o aeronáuticos de cualquier tipo.
+                    </h6>
+                    <br>
+                    <h5>Penalizaciones</h5>
 
+                    <h6>Maydas es una empresa de desarrollo comprometida con su desempeño y disciplinado, por lo cual se establecen penalizaciones por
+                        imcumplimiento de las tarea descritas en el segmento II y III, las cuales están expuestas a continuidad:
+                    </h6>
+                    <ol class="politicaslista">
+                        <li>Tiempo de respuesta excedido:</li>
+                            <ol type="">
+                              <li>De ser sobrepasado el tiempo establecido en el apartado III del presente documento
+                                  Maydas ofrece un 5% de descuento en la siguiente contratación de servicio, máximo 10% acumulable.</li>
+                            </ol>
+                        <li>Tiempo de Solución excedido:</li>
+                            <ol type="1">
+                              <li>De ser sobrepasado el tiempo establecido en el apartado III, se ofrece un sitio de
+                                  interés con un descuento del 15% en la siguiente contratación de servicio, máximo 15% acumulable.</li>
+                            </ol>
+                        <li>Fallo en el cobro o pago:</li>
+                           
+                 
+            
+        </div>
+        
+    </div>
+    
 	<div id="background">
 							
 		<header>
@@ -29,7 +123,7 @@
 				<ul>
 					
 					<li>
-						<a href="">Informacion</a>
+						<a href="#infQue">Informacion</a>
 						<div></div>
 					</li>
 					<li>
@@ -197,9 +291,8 @@
 			<div id="polInf" class="contenido">
 				
 				<ul>
-					<li><a href="" class="infLeg">Privacidad y Pol&iacute;tica de cookies</a></li>
-					<li><a href="" class="infLeg">Contacto</a></li>
-					<li><a href="" class="infLeg">Acerca de la p&aacute;gina</a></li>
+					<li><a class="infLeg" id="politicas" onClick="mostrarModal();">Privacidad y Pol&iacute;tica de cookies</a></li>
+					<li><a href="#infQue" class="infLeg">Acerca de la p&aacute;gina</a></li>
 				</ul>
 
 			</div>
@@ -217,9 +310,9 @@
 			<div id="infCont" class="contenido">
 				
 				<ul>
-					<li>Direcci&oacute;n</li>
-					<li>T&eacute;lefono:</li>
-					<li>E-mail</li>
+					<li>Direcci&oacute;n: Mar Mediterráneo # 227 | Col. Popotla | Del. Miguel Hidalgo | C.P. 11400 | Ciudad de México</li>
+					<li>T&eacute;lefono: 5729 6000 Ext. 63825.</li>
+					<li>E-mail: maydasaempr@gmail.com</li>
 				</ul>
 
 			</div>
