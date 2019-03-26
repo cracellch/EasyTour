@@ -14,8 +14,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script src="JS/form_ruta.js" type="text/javascript"></script>
+        <script src="JS/planearRuta.js" type="text/javascript"></script>
         <link rel="stylesheet" href="CSS/planearRuta.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="CSS/fuentes.css"/>
     </head>
     <body>
@@ -31,8 +32,8 @@
             Iterator<Lugar> itr = lugar.iterator();
     %>
             <div id="background" name="background">
-            
-            <div id="capaUno" name="contenido">
+
+                <div id="capaUno" name="contenido">
                 
                 <header>
 				
@@ -103,54 +104,76 @@
                     </aricle>
 
                     <article id="sitios">
+                            <ul>
     <%
                         while (itr.hasNext()) {                    
                             Lugar l= itr.next();
     %>
-                        <div id="lugares_<%=l.getId()%>" class="lugares" name="lugares_<%=l.getId()%>" >
-                            
-                            <div id="imagen" class="imagen">
-                                
-                                <img src="<%=l.getImagen() %>" >
-                                <div></div>
+                                <li>
+                                        <div id="lugares_<%=l.getId()%>" class="lugares" name="lugares_<%=l.getId()%>" >
 
-                            </div>
-
-                            <div id="infoLuga" class="infoLuga">
-                                
-                                <input type="button" value="X" class="eliminar" onclick="return eliminar<%= l.getId()%>(event)">
-                                
-                                <% // aqui se coloca el nombre del lugar porfavor no cambiar los "id" o la wea se muere!!!! %>
-                                <h2 id="nom_lug_<%=l.getId()%>" name="<%=l.getNombre()%>" class="nomLug">
-
-                                    <%=l.getNombre()%>
-
-                                </h2>
+                                               <div id="imagen" class="imagen">
+                                                   
+                                                <img src="<%=l.getImagen() %>" >
                                     
-                                <div class="infoEs">
-                                    
-                                    <%=l.getDescripcion()%>
-                                  
-                                </div>
-                                                                   
-                                <div id="durLuga_<%=l.getId()%>" name="durLuga_<%=l.getId()%>">
-                                    
-                                    <h4>
 
-                                        Duracion aproximada: <%= l.getDuracion()%> minutos.
+                                                </div>
 
-                                    </h4>
-                                    
-                                </div> 
+                                            <div id="infoLuga" class="infoLuga">
 
-                            </div>
+                                                <input type="button" value="X" class="eliminar" onclick="return eliminardiv(<%=l.getId()%>)">
+                                                <% // aqui se coloca el nombre del lugar porfavor no cambiar los "id" o la wea se muere!!!! %>
+                                                <h2 id="nom_lug_<%=l.getId() %>" name="<%=l.getNombre() %>" class="nomLug">
 
-                        </div>
-                    </article>
-                        
-    <%
+                                                    <%=l.getNombre() %>
+
+                                                </h2>
+
+                                                <div class="infoEs">
+
+                                                    <%=l.getDescripcion() %>
+
+                                                </div>
+
+                                                <div id="durLuga_<%=l.getId() %>" name="durLuga_<%=l.getId()%>">
+
+                                                    <h4>
+
+                                                        Duracion aproximada: <%=l.getDuracion()%> minutos.
+
+                                                    </h4>
+
+                                                </div> 
+
+                                            </div>
+
+                                        </div>
+                                </li>
+                               
+    <%      
                 }
     %>
+                            </ul>
+                            <form method="post" action="elegir guia.jsp"  name="formularioruta" id="formularioruta"> <%//este formulario no se muestra, se usa para enviar la ruta %>
+
+                                <input type="hidden" name='rutacompleta' id="ruta" value=''>
+                                <input type="hidden" name="tiemporuta" id="tiempo" value="">
+
+                            </form>
+
+                            <div id="guRut">
+
+                                <input type="button" value="Guardar ruta" onclick="prueba()" href="elegirGuia.jsp">
+
+                            </div>
+                    </article>
+            </section>
+                           
+          </div>   
+            
+        </div>
+    
+    
     <%        
         } else {
             response.sendRedirect("index.jsp");
