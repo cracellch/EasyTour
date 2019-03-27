@@ -116,12 +116,12 @@
                                                    
                                                 <img src="<%=l.getImagen() %>" >
                                     
-
                                                 </div>
 
                                             <div id="infoLuga" class="infoLuga">
 
-                                                <input type="button" value="X" class="eliminar" onclick="return eliminardiv(<%=l.getId()%>)">
+                                                <input type="button" value="Go" class="eliminar" onclick="return aggPlace(<%=l.getId()%>)" id="go<%=l.getId()%>">
+                                                <input type="button" value="X" class="eliminar" onclick="return eliminardiv(<%=l.getId()%>)" id="eb<%=l.getId()%>">
                                                 <% // aqui se coloca el nombre del lugar porfavor no cambiar los "id" o la wea se muere!!!! %>
                                                 <h2 id="nom_lug_<%=l.getId() %>" name="<%=l.getNombre() %>" class="nomLug">
 
@@ -137,7 +137,7 @@
 
                                                 <div id="durLuga_<%=l.getId() %>" name="durLuga_<%=l.getId()%>">
 
-                                                    <h4>
+                                                    <h4 id="dl<%=l.getId() %>">
 
                                                         Duracion aproximada: <%=l.getDuracion()%> minutos.
 
@@ -154,7 +154,7 @@
                 }
     %>
                             </ul>
-                            <form method="post" action="elegir guia.jsp"  name="formularioruta" id="formularioruta"> <%//este formulario no se muestra, se usa para enviar la ruta %>
+                            <form method="post" action="insertRuta.jsp"  name="formularioruta" id="formularioruta"> <%//este formulario no se muestra, se usa para enviar la ruta %>
 
                                 <input type="hidden" name='rutacompleta' id="ruta" value=''>
                                 <input type="hidden" name="tiemporuta" id="tiempo" value="">
@@ -163,7 +163,7 @@
 
                             <div id="guRut">
 
-                                <input type="button" value="Guardar ruta" onclick="prueba()" href="elegirGuia.jsp">
+                                <input type="button" value="Guardar ruta" onclick="mandar()" href="elegirGuia.jsp">
 
                             </div>
                     </article>

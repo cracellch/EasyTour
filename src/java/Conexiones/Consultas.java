@@ -35,7 +35,7 @@ public class Consultas extends Conexion{
             String exp = "insert into guia values (0,'"+ guia.getNombre() +"','"+ guia.getApellidoP()
                     +"','"+guia.getApellidoM()+"','"+guia.getTelefono()+"','"+guia.getDir()+"','"+guia.getCorreo()
                     +"','"+guia.getEdad()+"','"+guia.getCURP()+"','"+guia.getRFC()+"','"+guia.getPassword()
-                    +"',null ,'bloqueado')";
+                    +"',null ,'bloqueado', null)";
             try {
                 pst = con.prepareStatement(exp);
                     c = pst.executeUpdate();
@@ -71,7 +71,7 @@ public class Consultas extends Conexion{
             System.out.println(turista.getCorreo());
             String exp = "insert into turista values (0, '"+ turista.getNombre() +"', '"+ turista.getApellidoP()
                     +"', '"+ turista.getApellidoM() +"', '"+ turista.getCorreo()+"','"+ turista.getPassword() 
-                    +"', 'activo')";
+                    +"', 'activo', null)";
             System.out.println("sout: "+ exp);
             try {
                 pst = con.prepareStatement(exp);
