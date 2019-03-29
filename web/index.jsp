@@ -174,7 +174,7 @@
 
 					<div id="error">
 						
-						Usuarios y/o contrase&ntilde;a incorrecto(s). <a href="RecuperacionContraseña.jsp" style="color:#788FBC">Has olvidado tu contrase&ntilde;a</a> 
+						Usuarios y/o contrase&ntilde;a incorrecto(s). <a href="RecuperarContraseña.jsp" style="color:#788FBC">Has olvidado tu contrase&ntilde;a</a> 
 
 					</div>
 
