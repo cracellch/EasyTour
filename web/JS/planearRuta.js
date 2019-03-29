@@ -1,8 +1,11 @@
-var pr = [];
+var ids = [];
 var tiempo = 0;
-function aggPlace(i){
+var names= [];
+function aggPlace(i, time, name){
     document.getElementById("eb"+i).style.display = 'none';
-    pr.push(i);
+    ids.push(i);
+    names.push(name);
+    tiempo = tiempo = tiempo + time;
     document.getElementById("go"+i).disabled;
     //tiempo = tiempo + Integer.parse;
     //document.getElementById("tiempo").value= tiempo;
@@ -13,8 +16,9 @@ function eliminardiv(i){
  }
    
 function mandar(){
-        document.getElementById("ruta").value=pr.join(",");
-        alert(pr.join(","));
+        document.getElementById("rut").value=ids.join(",");
+        document.getElementById("ruta").value=names.join(",");
+        document.getElementById("tiempo").value= tiempo;
         document.formularioruta.submit();
        /*var xhr = XMLHttpRequest();
        xhr.open("POST", "insertRuta.jsp", true);

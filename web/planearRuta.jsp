@@ -16,21 +16,22 @@
         <title>JSP Page</title>
         <script src="JS/planearRuta.js" type="text/javascript"></script>
         <link rel="stylesheet" href="CSS/planearRuta.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
         <link rel="stylesheet" href="CSS/fuentes.css"/>
     </head>
     <body>
     <%
         HttpSession sesion = request.getSession();
         if (sesion.getAttribute("autenticado") != null && sesion.getAttribute("tipo").equals("turista")) {
-            Consultas con = new Consultas();
-            String ubicacion = "Zocalo";
-            if(request.getParameter("ubi")!=null){
-            ubicacion = request.getParameter("ubi");
-            }
-            ArrayList<Lugar> lugar = con.lugares(ubicacion);
-            Iterator<Lugar> itr = lugar.iterator();
-    %>
+            try {
+                    Consultas con = new Consultas();
+                    String ubicacion = "Zocalo";
+                    if(request.getParameter("ubi")!=null){
+                    ubicacion = request.getParameter("ubi");
+                    }
+                    ArrayList<Lugar> lugar = con.lugares(ubicacion);
+                    Iterator<Lugar> itr = lugar.iterator();
+    %>            
             <div id="background" name="background">
 
                 <div id="capaUno" name="contenido">
@@ -120,7 +121,7 @@
 
                                             <div id="infoLuga" class="infoLuga">
 
-                                                <input type="button" value="Go" class="eliminar" onclick="return aggPlace(<%=l.getId()%>)" id="go<%=l.getId()%>">
+                                                <input type="button" value="Go" class="eliminar" onclick="return aggPlace(<%=l.getId()%>, <%=l.getDuracion()%>, '<%=l.getNombre()%>')" id="go<%=l.getId()%>">
                                                 <input type="button" value="X" class="eliminar" onclick="return eliminardiv(<%=l.getId()%>)" id="eb<%=l.getId()%>">
                                                 <% // aqui se coloca el nombre del lugar porfavor no cambiar los "id" o la wea se muere!!!! %>
                                                 <h2 id="nom_lug_<%=l.getId() %>" name="<%=l.getNombre() %>" class="nomLug">
@@ -156,8 +157,9 @@
                             </ul>
                             <form method="post" action="insertRuta.jsp"  name="formularioruta" id="formularioruta"> <%//este formulario no se muestra, se usa para enviar la ruta %>
 
-                                <input type="hidden" name='rutacompleta' id="ruta" value=''>
+                                <input type="hidden" name='nomsrut' id="ruta" value=''>
                                 <input type="hidden" name="tiemporuta" id="tiempo" value="">
+                                <input type="hidden" name="rut" id="rut" value="">
 
                             </form>
 
@@ -174,9 +176,17 @@
         </div>
     
     
-    <%        
+    <%  
+            } catch (Exception e) {
+    %>
+                    <script>
+                        alert("Algo salió mal, recarga la página o intenta más tarde");
+                    </script>
+    <%  
+                    System.err.println(e.toString());
+              }
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("logout.jsp");
         }
     
     %>

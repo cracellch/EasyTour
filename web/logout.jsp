@@ -4,7 +4,11 @@
     Author     : usuario1
 --%>
 <% 
-    HttpSession sesionOk = request.getSession();
-    sesionOk.invalidate();
-    response.sendRedirect("index.jsp");
+    try {
+            HttpSession sesionOk = request.getSession();
+            sesionOk.invalidate();
+            response.sendRedirect("index.jsp");
+        } catch (Exception e) {
+            response.sendRedirect("index.jsp");
+        }
 %>
