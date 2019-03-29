@@ -1,0 +1,307 @@
+*{
+
+	margin: 0 auto;
+	padding: 0;
+        overflow-x:hidden;
+        
+}
+
+
+header{
+
+    width: 100%;
+    height: 50px;
+    background-color: rgb(39, 75, 148);
+    color: white;
+
+}
+
+header > div{
+
+    width: 180px;
+    height: 50px;
+    padding-left: 20px;
+    float: left;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Amaranth-Regular;
+
+}
+
+header > nav{
+
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    margin: 0px;
+    margin-left: 50px;
+
+}
+
+header > nav > ul {
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+
+}
+
+header > nav > ul > li{
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    padding-right: 50px;
+    padding-bottom: 0px;
+
+}
+
+header > nav > ul > li > a{
+
+    text-decoration: none;
+    font-family: CabinCondensed-Regular;
+    color: white;
+
+}
+
+header > nav > ul > li > a > div{
+
+    width: 100%;
+    height: 5px;
+
+}
+
+header > nav > ul > li > a:hover > div{
+
+    width: 100%;
+    height: 5px;
+    background-color: #FF8300;
+
+}
+
+
+html, body{
+
+        background-image: url('../RESOURCE/Museo-CDMX.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;        
+        width:100%;
+        height: 100%;
+        overflow: hidden;
+}
+
+div.Oscuro{
+        background-color: rgba(0, 0, 0, 0.5);
+        width:100%;
+        height:100%;
+  
+}
+
+h1{
+
+	font-size: 2.5em;
+        margin-top: 6px;
+
+}
+
+h2{
+        margin-top:2px;
+	font-size: 1.7em;
+
+}
+
+h3{
+
+	font-size: 1.2em;
+
+}
+
+h4{
+
+	font-size: 1em;
+
+}
+
+h5{
+
+	font-size: 0.8em;
+
+}
+
+h6{
+
+	font-size: 0.6em;
+
+}
+
+
+
+div#titFun > h1{
+
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-family: KeepCalm-Medium;
+	color:  #DF7300;
+}
+
+div.text > h2{
+
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: CabinCondensed-Regular;
+	color: white;
+
+}
+
+div.text > h3{
+
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-family: CabinCondensed-Regular;
+	color: white;
+
+}
+
+div.correo > h2{
+        width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	font-family: CabinCondensed-Regular;
+	color: white;
+        text-align: center;
+        margin-top: 7px;
+}
+
+form{
+	width: 100%;
+	height: 100%;
+        margin: 0 auto;
+}
+
+div.formularioCorreo{
+        
+	height: 100%;
+	width: 100%;
+        margin-left:  33%;
+        margin-top:10px;
+}
+div.botonesInicio{
+        margin-left:  10px;
+        border-spacing: 10px;
+        float:left;
+        
+}
+
+#inp{
+        float:left;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.icon{
+
+	padding: 10px;
+	border-radius: 0px 5px 5px 0px;
+        background-color: white;
+        width:20px;
+        
+}
+
+.boxIcon{
+
+	border-radius: 5px 0px 0px 5px;
+        
+
+}
+
+
+input[type="text"], input[type="password"]{
+
+	width: 250px;
+	background: none;
+	border: solid 2px white;
+	background-color: 5px;
+	color: white;
+	padding: 10px;
+
+}
+
+input[type="text"]:hover, input[type="password"]:hover{
+
+	border-color: #FF8300;
+
+}
+
+input[type="text"]:hover + img, input[type="password"]:hover + img{
+
+	background-color: #FF8300;
+
+}
+
+input[type="text"]:focus, input[type="password"]:focus{
+
+	outline: none;
+	border-color: #274B94; 
+
+}
+
+input[type="text"]:focus + img, input[type="password"]:focus + img{
+
+	background-color: #274B94;
+	fill: #274B94;
+
+}
+
+
+input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder{
+
+	color: white; 
+
+}
+
+input[type="submit"], input[type="button"]{
+
+	width: 100px;
+	background: none;
+	border: solid 2px white;
+	border-radius: 5px;
+	color: white;
+	padding: 10px;
+
+}
+
+
+input[type="submit"]:hover, input[type="button"]:hover{
+
+	background-color: #274B94;
+	border-color: #274B94;
+
+
+}
+
+input[type="submit"]:focus, input[type="button"]:focus{
+
+	outline: none;
+
+}
+
+
