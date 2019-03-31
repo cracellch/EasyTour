@@ -11,11 +11,13 @@
     String contraseña = request.getParameter("passwordI");
     String tipousuario= "turista";
     try {
-        if (con.Login(correo, contraseña, tipousuario)) {
+        int id = con.Login(correo, contraseña, tipousuario);
+        if (id != 0) {
             HttpSession sesion = request.getSession(true); //esto es pa las sesiones ue
             sesion.setAttribute("autenticado", true);
+            sesion.setAttribute("id", id);
             sesion.setAttribute("tipo", tipousuario);
-            response.sendRedirect("planearRuta.jsp");                                 //esto redireccona a la pagina de incio
+            response.sendRedirect("planearRuta.jsp");//esto redireccona a la pagina de incio
             System.out.println("acceso concedido");
         } else {
             response.sendRedirect("index.jsp");
