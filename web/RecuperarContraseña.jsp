@@ -4,7 +4,12 @@
     Author     : crace
 --%>
 
+<%@page import="Conexiones.ControladorCorreo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Conexiones.Consultas"%>
+<%@page import="Entidades.Correo"%>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -68,7 +73,8 @@
 
                         </div>
                         <div class="formularioCorreo">
-                                <form name="Inicio" method="post" id="login" action="login.jsp">
+                                <form name="Inicio" method="post" id="login" action="EnviarCorreo.jsp">
+                                    
                                         <div id="inp">
                                                 <input type="text" placeholder="E-mail" id="inpUsu" class="boxIcon" onkeypress="return validarcorreo(event)" name="correoI">
                                                 <img src="RESOURCE/iconos/email.png" class="icon">
