@@ -14,7 +14,9 @@ import Entidades.Tour;
 import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author crace
@@ -47,7 +49,7 @@ public class Consultas extends Conexion{
             } catch (Exception e) {
                 System.err.println("error: "+ e.getCause());
             }
-            finally{
+            finally {
                 try {
                     if(pst != null) pst.close();
                     if(getConexion() != null) getConexion().close();
@@ -102,10 +104,11 @@ public class Consultas extends Conexion{
         return false;
     }
     
-    public int Login (String correo, String contraseña, String tpusu){
+    public String [] Login (String correo, String contraseña){
+        String [] arr= new String [2];
         Validaciones  valids = new Validaciones();
         Cifrado cipher = new Cifrado();
-        if (valids.validarString(correo) && valids.validarString(contraseña) && valids.validarString(tpusu)){
+        if (valids.validarString(correo) && valids.validarString(contraseña)){
             PreparedStatement pst = null;
             ResultSet rs = null;
             try {
@@ -113,15 +116,19 @@ public class Consultas extends Conexion{
             } catch (Exception e) {
                 System.err.println(e.toString());
             }
-            String exp = "select * from "+tpusu+" where cor_"+tpusu.charAt(0)+tpusu.charAt(1)
-                    +tpusu.charAt(2)+" = '"+correo+"' and pas_"+tpusu.charAt(0)+tpusu.charAt(1)
-                    +tpusu.charAt(2)+" = '"+contraseña+"'";
-         
+//              String exp = "select * from "+tpusu+" where cor_"+tpusu.charAt(0)+tpusu.charAt(1)
+//                    +tpusu.charAt(2)+" = '"+correo+"' and pas_"+tpusu.charAt(0)+tpusu.charAt(1)
+//                    +tpusu.charAt(2)+" = '"+contraseña+"'";
+            String exp="select id_usu, nom_tpu from usuario natural join tipousuario where cor_usu ='"+
+                    correo+"' and pas_usu='"+contraseña+"'";
             try {
                 pst = con.prepareStatement(exp);
                 rs = pst.executeQuery();
-                while(rs.next()){
-                    return rs.getInt(1);
+                while (rs.next()) {                    
+                    arr[0] = rs.getString(1);
+                    System.out.println("arr1 "+arr[0]);
+                    arr[1] = rs.getString(2);
+                    System.out.println("arr2 "+arr[1]);
                 }
             } catch (Exception e) {
                 System.err.println("error: " + e.getCause());
@@ -138,65 +145,73 @@ public class Consultas extends Conexion{
                     }
             }
         }
-        return 0;
+        return arr;
     }
     
     public ArrayList<Lugar> lugares (String ubicacion){
         ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-        PreparedStatement ps= null;
-        ResultSet rs= null;
-        try {
-           String exp = "select * from lugar where ubi_lug = '"+ubicacion+"'";
-            System.out.println("exp: "+exp);
-            System.out.println(ubicacion);
-            ps= con.prepareStatement(exp);
-            rs = ps.executeQuery();
-            while (rs.next()) {                
-                Lugar l = new Lugar();
-                l.setId(Integer.parseInt(rs.getString(1)));
-                l.setNombre(rs.getString(2));
-                System.out.println(l.getNombre());
-                l.setUbicacion(rs.getString(3));
-                l.setDescripcion(rs.getString(4));
-                l.setImagen(rs.getString(5));
-                l.setDuracion(rs.getString(6));
-                lugares.add(l);
+        System.out.println("aif");
+        if(ubicacion.equals("Zocalo") || ubicacion.equals("Bellas Artes")){
+            PreparedStatement ps= null;
+            ResultSet rs= null;
+            try {
+               String exp = "select * from lugar where ubi_lug = '"+ubicacion+"'";
+                System.out.println("exp: "+exp);
+                System.out.println(ubicacion);
+                ps= con.prepareStatement(exp);
+                rs = ps.executeQuery();
+                while (rs.next()) {                
+                    Lugar l = new Lugar();
+                    l.setId(rs.getInt(1));
+                    l.setNombre(rs.getString(2));
+                    System.out.println(l.getNombre());
+                    l.setUbicacion(rs.getString(3));
+                    l.setDescripcion(rs.getString(4));
+                    l.setImagen(rs.getString(5));
+                    l.setDuracion(rs.getString(6));
+//                    l.setLat(rs.getInt(7));
+//                    l.setLon(rs.getInt(8));
+                    lugares.add(l);
+                }
+            } catch (Exception e) {
+                System.err.println("error: "+e.toString());
             }
-        } catch (Exception e) {
-            System.err.println("error: "+e.toString());
-        }
-        finally{
-                try {
-                    if(ps != null) ps.close();
-                    if(rs != null) rs.close();
-                    if(getConexion() != null) getConexion().close();
-                } catch (Exception ex) {
-                    System.err.println("error: " + ex.toString());
-                    System.err.println("error: " + ex.getCause());
-                    }
+            finally{
+                    try {
+                        if(ps != null) ps.close();
+                        if(rs != null) rs.close();
+                        if(getConexion() != null) getConexion().close();
+                    } catch (Exception ex) {
+                        System.err.println("error: " + ex.toString());
+                        System.err.println("error: " + ex.getCause());
+                        }
+            }
         }
         return lugares;
     }
 
-    public String asigGuia (String fecha){
+    public Guia asigGuia (String fecha){
         PreparedStatement ps= null;
         ResultSet rs= null;
-        String reg = "";
+        Guia g = new Guia();
         try {
-            String exp = "select id_gui, nom_gui, app_gui, apm_gui, cor_gui from guia where id_gui NOT IN "
+            String exp = "select id_gui, nom_usu, app_usu, apm_usu, cor_usu from usuario natural join guia where id_gui NOT IN "
                     + "(select id_gui from tour where fec_tou='" + fecha+"') limit 1";
             
             ps= con.prepareStatement(exp);
             rs = ps.executeQuery();
             while(rs.next()){
-                reg= rs.getString(1);
-                reg = reg + "," + rs.getString(2)+ " "+rs.getString(3)+" "+rs.getString(4)+ ","+rs.getString(5);
+                g.setId(rs.getInt(1));
+                g.setNombre(rs.getString(2));
+                g.setApellidoP(rs.getString(3));
+                g.setApellidoM(rs.getString(4));
+                g.setCorreo(rs.getString(5));
             }
-            System.out.println("reg: "+reg);
+            //System.out.println("reg: "+reg);
         } catch (Exception e) {
             System.err.println("error: "+e.toString());
         }
-        finally{
+        finally {
                 try {
                     if(ps != null) ps.close();
                     if(rs != null) rs.close();
@@ -206,7 +221,7 @@ public class Consultas extends Conexion{
                     System.err.println("error: " + ex.getCause());
                     }
         }
-        return reg;
+        return g;
     }
     
     public void saveTour(String ruts, Tour tour){
@@ -223,7 +238,7 @@ public class Consultas extends Conexion{
             //System.out.println("c"+c);
             if (rs.next()) {
                 int id = rs.getInt(1);
-                System.out.println("Inserted ID -" + id); // display inserted record
+                System.out.println("Inserted ID -" + id); // muestra el ID insertado
                 saveRuta(id, ruts);
             }
             
