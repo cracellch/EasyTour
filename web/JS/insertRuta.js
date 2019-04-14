@@ -10,11 +10,11 @@ $("document").ready(function () {
                         alert("Data: " + data + "\nStatus: " + status);
                         var json= JSON.parse(data);
                         console.log(json);
-//                        $("#nomguia").val(json.nombre); 
-//                        $("#corguia").val(array[2]); 
-//                        $("#ag").val(array[0]);
-//                        $("#butVG").hide();
-//                        $("#butMF").show();
+                        $("#nomguia").val(json.nombre +" "+json.apellidoP +" "+json.apellidoM); 
+                        $("#corguia").val(json.correo); 
+                        $("#ag").val(json.id);
+                        $("#butVG").hide();
+                        $("#butMF").show();
                     });
         }
     });
