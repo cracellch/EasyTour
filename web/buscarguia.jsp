@@ -3,18 +3,22 @@
     Created on : 29/03/2019, 02:15:40 AM
     Author     : usuario1
 --%>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="Entidades.Guia"%>
 <%@page import="Conexiones.Consultas"%>
 <%@page session="true"%>
 <%
     HttpSession sesion = request.getSession();
     if (sesion.getAttribute("autenticado") != null && sesion.getAttribute("tipo").equals("turista") && request.getParameter("date") != null && request.getMethod() == "POST") {
-        response.setContentType("text/plain");
+        response.setContentType("text/html");
         Consultas con = new Consultas();
         String date = request.getParameter("date");
-        String reg = con.asigGuia(date);
-        System.out.println(reg);
-        out.println(reg);
-        
+        Guia g = con.asigGuia(date);
+        Gson gson = new Gson();
+        String data = gson.toJson(g);
+        System.out.println("data: "+data);
+        response.getWriter().write(data);
+        //out.println(reg);
     }
 %>
 

@@ -29,69 +29,107 @@ public class Consultas extends Conexion{
     }
     
     //Boolean por si no se valida bien y así
-    public boolean registrarGuia(Guia guia){
+    public String registrarGuia(Guia guia){
         Validaciones valids = new Validaciones();;
         Cifrado cipher= new Cifrado();
+        String ret;
+        String generatedColumns[] = { "ID" };
         if (valids.validarGuia(guia)) {
             PreparedStatement pst = null;
+            ResultSet rs= null;
             int c= 0;
             guia = cipher.cifGuia(guia);
-            String exp = "insert into guia values (0,'"+ guia.getNombre() +"','"+ guia.getApellidoP()
-                    +"','"+guia.getApellidoM()+"','"+guia.getTelefono()+"','"+guia.getDir()+"','"+guia.getCorreo()
-                    +"','"+guia.getEdad()+"','"+guia.getCURP()+"','"+guia.getRFC()+"','"+guia.getPassword()
-                    +"',null ,'bloqueado', null)";
+            String exp = "call addUser('"+guia.getNombre()+"','"+guia.getApellidoP()+"','" 
+                    + guia.getApellidoM()+"','"+guia.getCorreo()+"','"+guia.getPassword()+"','bloqueado'," 
+                    + "2)";
+            System.out.println("exp: "+exp);
+//            String exp= "insert into usuario values (0,'"+guia.getNombre()+"','"+guia.getApellidoP()+"','"
+//                    + guia.getApellidoM()+"','"+guia.getCorreo()+"','"+guia.getPassword()+"','bloqueado',"
+//                    + "null,2)";
+//            String exp = "insert into guia values (0,'"+ guia.getNombre() +"','"+ guia.getApellidoP()
+//                    +"','"+guia.getApellidoM()+"','"+guia.getTelefono()+"','"+guia.getDir()+"','"+guia.getCorreo()
+//                    +"','"+guia.getEdad()+"','"+guia.getCURP()+"','"+guia.getRFC()+"','"+guia.getPassword()
+//                    +"',null ,'bloqueado', null)";
             try {
-                pst = con.prepareStatement(exp);
+                pst = con.prepareStatement(exp, generatedColumns);
                     c = pst.executeUpdate();
-                    System.out.println("cont: "+c);
-                    System.out.println("Guia registrado");
-                    
+                    //System.out.println("cont: "+c);
+                    System.out.println("usuario registrado");
+                    rs= pst.getGeneratedKeys();
+                    //System.out.println("c"+c);
+                    if (rs.next()) {
+                        int id = rs.getInt(1);
+                        System.out.println("Inserted ID -" + id); // muestra el ID insertado
+                        pst= null;
+                        exp = "insert into guia values (0,'"+guia.getTelefono()+"','"+guia.getDir()+"','"
+                                +guia.getEdad()+"','"+guia.getCURP()+"','"+guia.getRFC()+"',"
+                                +"null,"+id+")";
+                        c= pst.executeUpdate(exp);
+                        System.out.println("guia registrado");
+                        ret="guia registrado";
+                    } else{
+                        ret="Ya existe un registro con este correo";
+                    }
             } catch (Exception e) {
                 System.err.println("error: "+ e.getCause());
+                return "Algo salió mal";
             }
             finally {
                 try {
                     if(pst != null) pst.close();
+                    if(rs != null) rs.close();
                     if(getConexion() != null) getConexion().close();
-                    return true;
                 } catch (Exception ex) {
                     System.err.println("error: " + ex.getCause());
                 }
             }
         } else {
-            return false;
+            return "Datos inválidos";
         }
-        return false;
+        return ret;
     }
     
     //Boolean por si no se valida bien y así
-    public boolean registrarTurista(Turista turista){
+    public String registrarTurista(Turista turista){
         Validaciones valids = new Validaciones();;
         Cifrado cipher= new Cifrado();
+        String ret = "";
         if (valids.validarTurista(turista)) {
             PreparedStatement pst = null;
             int c= 0;
+            ResultSet rs=null;
+            String generatedColumns[] = { "ID" };
             turista = cipher.cifTurista(turista);
             System.out.println(turista.getCorreo());
-            String exp = "insert into turista values (0, '"+ turista.getNombre() +"', '"+ turista.getApellidoP()
-                    +"', '"+ turista.getApellidoM() +"', '"+ turista.getCorreo()+"','"+ turista.getPassword() 
-                    +"', 'activo', null)";
-            System.out.println("sout: "+ exp);
+//            String exp = "insert into usuario values (0, '"+ turista.getNombre() +"', '"+ turista.getApellidoP()
+//                    +"', '"+ turista.getApellidoM() +"', '"+ turista.getCorreo()+"','"+ turista.getPassword() 
+//                    +"', 'activo', null, 3)";
+            String exp = "call addUser('"+turista.getNombre()+"','"+turista.getApellidoP()+"','" 
+                    + turista.getApellidoM()+"','"+turista.getCorreo()+"','"+turista.getPassword()+"','activo'," 
+                    + "3)";
+            System.out.println("exp: "+exp);
             try {
-                pst = con.prepareStatement(exp);
+                pst = con.prepareStatement(exp , generatedColumns);
                     c = pst.executeUpdate();
+                    rs=pst.getGeneratedKeys();
+                    if (rs.next()) {
+                        ret= "turista registrado";
+                    } else {
+                        ret= "Ya existe un registro con ese correo";
+                    }
                     System.out.println("cont: "+c);
-                    System.out.println("Guia registrado");
+                    System.out.println("Turista registrado");
                     
             } catch (Exception e) {
                 System.err.println("error: " + e.getCause());
                 System.err.println("error 1: "+ e.toString());
+                return "Algo salió mal";
             }
             finally{
                 try {
                     if(pst != null) pst.close();
+                    if(rs != null) rs.close();
                     if(getConexion() != null) getConexion().close();
-                    return true;
                 } catch (Exception ex) {
                     System.err.println("error: " + ex.toString());
                     System.err.println("error: " + ex.getCause());
@@ -99,9 +137,9 @@ public class Consultas extends Conexion{
                 }
             }
         } else {
-            return false;
+            return "Datos inválidos";
         }
-        return false;
+        return ret;
     }
     
     public String [] Login (String correo, String contraseña){
@@ -284,4 +322,56 @@ public class Consultas extends Conexion{
                     }
         }
     }
+    
+    public String cambDatos (String cor, String pas, int id){
+        String ret="";
+        String er="Ha ocurrido un error";
+        int c;
+        PreparedStatement ps = null;
+        Cifrado cipher= new Cifrado();
+        String exp = null;
+        if (cor.equals("")){
+            try {
+               pas= cipher.encrypt(pas);
+            } catch (Exception e) {
+               System.err.print(e.toString());
+               return er;
+            }
+            exp = "call updatePass ("+id+",'"+pas+"')";
+        } else if (pas.equals("")){
+            exp = "call updateCor ("+id+",'"+cor+"')";
+        } else{
+            try {
+               pas= cipher.encrypt(pas);
+            } catch (Exception e) {
+               System.err.print(e.toString());
+               return er;
+            }
+            exp = "call updateCorPas ("+id+",'"+cor+"','"+pas+"')";
+        }
+        try {
+            ps= con.prepareStatement(exp);
+            c = ps.executeUpdate();
+            if (c != 0) {
+                ret = "Cambio guardado";
+            } else {
+                ret= "Error. Es posible que el correo ya esté en uso o que la contraseña ingresada sea igual a la actual";
+            }
+        } catch (Exception e) {
+            System.err.println("error: "+e.toString());
+            return er;
+        }
+        finally{
+                try {
+                    if(ps != null) ps.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+        }
+        return ret;
+    }
 }
+
+

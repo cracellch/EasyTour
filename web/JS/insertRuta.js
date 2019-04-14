@@ -8,12 +8,13 @@ $("document").ready(function () {
                     },
                     function (data, status) {
                         alert("Data: " + data + "\nStatus: " + status);
-                        var array = data.split(",");
-                        $("#nomguia").val(array[1]); 
-                        $("#corguia").val(array[2]); 
-                        $("#ag").val(array[0]);
-                        $("#butVG").hide();
-                        $("#butMF").show();
+                        var json= JSON.parse(data);
+                        console.log(json);
+//                        $("#nomguia").val(json.nombre); 
+//                        $("#corguia").val(array[2]); 
+//                        $("#ag").val(array[0]);
+//                        $("#butVG").hide();
+//                        $("#butMF").show();
                     });
         }
     });

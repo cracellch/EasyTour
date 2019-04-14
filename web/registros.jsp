@@ -21,7 +21,8 @@
             guia.setRFC(request.getParameter("RFC"));
             guia.setTelefono(Integer.parseInt(request.getParameter("Telefono_Guia")));
             guia.setDir(request.getParameter("Direccion_Guia"));
-            if (con.registrarGuia(guia)) {
+            String msj =con.registrarGuia(guia);
+            if (msj == "guia registrado") {
                 response.sendRedirect("index.jsp");
             } else {
                 System.out.println("error");
@@ -34,7 +35,8 @@
             turista.setApellidoM(request.getParameter("ApellidoM_Turista"));
             turista.setCorreo(request.getParameter("Correo_Turista"));
             turista.setPassword(request.getParameter("PSW_Confirmacion"));
-            if (con.registrarTurista(turista)) {
+            String msj=con.registrarTurista(turista);
+            if (msj == "turista registrado") {
                 response.sendRedirect("index.jsp");
             } else {
                 System.out.println("error");

@@ -9,15 +9,24 @@
     Consultas con= new Consultas();
     String correo = request.getParameter("correoI");
     String contraseña = request.getParameter("passwordI");
-    String tipousuario= "turista";
     try {
-        int id = con.Login(correo, contraseña, tipousuario);
-        if (id != 0) {
+        String [] arr = con.Login(correo, contraseña);
+        int id = Integer.parseInt(arr[0]);
+        String tipousuario = arr[1];
+        if (tipousuario.equals("turista") || tipousuario.equals("guia") || tipousuario.equals("admin")) {
             HttpSession sesion = request.getSession(true); //esto es pa las sesiones ue
             sesion.setAttribute("autenticado", true);
             sesion.setAttribute("id", id);
             sesion.setAttribute("tipo", tipousuario);
-            response.sendRedirect("planearRuta.jsp");//esto redireccona a la pagina de incio
+            if(tipousuario.equals("turista")){
+                response.sendRedirect("planearRuta.jsp");
+            } else if(tipousuario.equals("guia")){
+                //Redireccionar a donde corresponda
+                response.sendRedirect("planearRuta.jsp");
+            } else {
+                //Redireccionar a donde corresponda
+                response.sendRedirect("planearRuta.jsp");
+            }
             System.out.println("acceso concedido");
         } else {
             response.sendRedirect("index.jsp");
