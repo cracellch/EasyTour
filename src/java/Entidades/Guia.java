@@ -11,7 +11,15 @@ package Entidades;
  */
 public class Guia {
     String nombre, apellidoP, apellidoM, correo, password, CURP, RFC, dir;
-    int telefono, edad, calificacion;
+    int telefono, edad, calificacion, id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getCalificacion() {
         return calificacion;
