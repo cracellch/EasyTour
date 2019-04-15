@@ -52,7 +52,7 @@
 
                         <ul>
 
-                            <li>
+                        <li>
                                 <a href="planearRuta.jsp">
                                     Inicio
                                     <div></div>
@@ -61,7 +61,14 @@
                             
                             <li>
                                 <a href="elegirGuia.jsp">
-                                    Buscar Guia
+                                    Cuenta
+                                    <div></div>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="elegirGuia.jsp">
+                                    Notificaciones
                                     <div></div>
                                 </a>
                             </li>

@@ -13,6 +13,8 @@
         <title>Form Tour</title>
         <script src="JS/jquery-3.3.1.min.js"></script>
         <script src="JS/insertRuta.js"></script>
+        <link rel="stylesheet" href="CSS/insertarRuta.css"/>
+        <link rel="stylesheet" href="CSS/fuentes.css"/>
     </head>
    <body>
 <%
@@ -52,7 +54,14 @@
                             
                             <li>
                                 <a href="elegirGuia.jsp">
-                                    Buscar Guia
+                                    Cuenta
+                                    <div></div>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="elegirGuia.jsp">
+                                    Notificaciones
                                     <div></div>
                                 </a>
                             </li>
@@ -68,29 +77,43 @@
 
                     </nav>
                 </header>
-                <p>Ruta:</p>
-                    <ul>
-                    <%
-                    for (int i = 0; i < array.length; i++) {
-                    %>
-                        <li id="nombrelugar">
-                            <%= array[i] %>
-                        </li>
-                    <%        
-                        }
-                    %>
-                    </ul>
-                <form id="formtour">
-                    <input type="hidden" name="important" value="<%=ids%>" disabled="true"  id="important">
-                    <input type="text" name="costo" value="200" disabled="true" id="costo">
-                    <input type="text" name="tiempo" value="<%= duracion%>" disabled="true" id="tiempo">
-                    <input type="date" name="fecha" id="fecha">
-                    <input type="button" value="Buscar guía disponible" id="butVG">
-                    <input type="hidden" value="" id="ag" name="guia">
-                    <input type="text" value="" id="nomguia" disabled>
-                    <input type="text" value="" id="corguia" disabled>
-                    <input type="button" value="Guardar tour" id="butMF" style="display: none">
-                </form>
+                <section id="inicio">
+
+			<article id="ticket">
+				
+                                <p>Ruta:</p>
+                                <ul>
+                                <%
+                                for (int i = 0; i < array.length; i++) {
+                                %>
+                                    <li id="nombrelugar">
+                                        <%= array[i] %>
+                                    </li>
+                                <%        
+                                    }
+                                %>
+                                </ul>
+                            <form id="formtour">
+                                <input type="hidden" name="important" value="<%=ids%>" disabled="true"  id="important">
+                                <input type="text" name="costo" value="200" disabled="true" id="costo">
+                                <input type="text" name="tiempo" value="<%= duracion%>" disabled="true" id="tiempo">
+                                <input type="date" name="fecha" id="fecha">
+                                <input type="button" value="Buscar guía disponible" id="butVG">
+                                <input type="hidden" value="" id="ag" name="guia">
+                                <input type="text" value="" id="nomguia" disabled>
+                                <input type="text" value="" id="corguia" disabled>
+                                <input type="button" value="Guardar tour" id="butMF" style="display: none">
+                            </form>
+
+			</article>
+
+			<article id="mapa">
+                            
+				
+      
+                        </article>
+
+		</section>
             </div>
         </div>
 <%       

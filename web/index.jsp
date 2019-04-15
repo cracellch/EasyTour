@@ -188,7 +188,7 @@
 				</form>
                             <!-- AQUI es donde tyienes que arreglasr la wea del boton plots-->
       
-							</article>
+                        </article>
 
 		</section>
 

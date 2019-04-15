@@ -1,12 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 24/10/2018, 04:18:09 PM
-    Author     : AMD
-*/
 
 html, body{
     
@@ -109,63 +100,6 @@ section{
     
 }
 
-article#titRut{
-    
-    with: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: KeepCalm-Medium;
-    
-}
-
-article#titRut > h1{
-    
-    font-family: KeepCalm-Medium;
-    color: #DF7300;
-    
-}
-
-#ubicacion{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px; 
-    
-}
-
-#ubicacion > form{
-    
-    padding: 10px;
-    
-}
-
-#ubicacion > form > select{
-    
-    width: 400px;
-    padding: 10px;
-    
-}
-
-#ubicacion > form > select > option{
-    
-    width: 400px;
-    padding: 10px;
-    border: solid 1px rgb(39, 75, 148);
-    border-radius: 0px 5px 5px 0px;
-    
-}
-
-#ubicacion > form > select > option:focus{
-    
-    width: 400px;
-    padding: 10px;
-    border: solid 1px rgb(39, 75, 148); 
-    outline: none;
-    
-}
 
 input[type="submit"]{
     
@@ -272,70 +206,6 @@ img{
     
 }
 
-.infoLuga > h2{
-    
-    font-family: KeepCalm-Medium;
-    color: #DF7300;
-    
-}
-
-.infoLuga > .infoEs{
-    
-    font-family: CabinCondensed-Regular;
-    
-}
-
-.infoLuga > h4{
-    
-    font-family: CabinCondensed-Regular;
-    color: #DF7300;
-    
-}
-
-.infoLuga > div > h4{
-    
-    font-family: CabinCondensed-Regular;
-    color: #DF7300;
-    
-}
-
-.infoEs{
-    
-    text-align: justify;
-    
-}
-
-div#guRut{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-div#guRut > input[type="button"]{
-    
-    width: 300px;
-    padding: 10px;
-    margin-bottom: 40px;
-    border-radius: 5px;
-    border: solid 2px rgb(39, 75, 148);
-    background: none;
-    color:  rgb(39, 75, 148);
-    
-}
-
-div#guRut > input[type="button"]:hover{
-    
-    width: 300px;
-    padding: 10px;
-    margin-bottom: 40px;
-    border-radius: 5px;
-    border: solid 2px rgb(39, 75, 148);
-    background: rgb(39, 75, 148);
-    color:  white;
-    
-}
 
 h1{
 
