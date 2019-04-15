@@ -53,6 +53,8 @@
                         <h1>	
                                 Recuperar Contraseña 
                         </h1>	  
+                        <br>
+                        <br>
                         <div class="text">
                             <h2>	
                             ¿Perdiste o olvidaste tu contraseña por alguna razon?
@@ -65,6 +67,9 @@
                                 enviada a tu correo y introduce la nueva contraseña 2 veces para confirmarla.</h3>
 
                         </div>
+                        <br>
+                        <br>
+                        <br>
                         <div class="correo">
 
                             <h2>	
