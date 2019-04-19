@@ -15,11 +15,22 @@
         <script src="JS/insertRuta.js"></script>
         <link rel="stylesheet" href="CSS/insertarRuta.css"/>
         <link rel="stylesheet" href="CSS/fuentes.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+    <script src="JS/inserRutaMap.js"></script>
+
     </head>
    <body>
 <%
     HttpSession sesion = request.getSession();
-    if(sesion.getAttribute("autenticado") != null && sesion.getAttribute("tipo").equals("turista") && request.getMethod() == "POST" && request.getParameter("nomsrut") != null && request.getParameter("tiemporuta") != null && request.getParameter("rut") != null && request.getParameter("nomsrut") != "" && request.getParameter("tiemporuta") != "" && request.getParameter("rut") != ""){
+    String ruta= request.getParameter("rut");
+    System.out.println("ruta "+ ruta);
+    if(sesion.getAttribute("autenticado") != null && sesion.getAttribute("tipo").equals("turista") && request.getMethod() == "POST"){
+        if (request.getParameter("rut").equals("") || request.getParameter("rut").equals(null)) {
+                response.sendRedirect("planearRuta.jsp");
+            }
         String [] array  = request.getParameter("nomsrut").split(",");
         String ids = request.getParameter("rut");
         String duracion= request.getParameter("tiemporuta");
@@ -106,13 +117,9 @@
                             </form>
 
 			</article>
-
-			<article id="mapa">
-                            
-				
-      
+                        <article id="mapaid" style="width: 600px; height: 400px;">
+                                    
                         </article>
-
 		</section>
             </div>
         </div>
@@ -123,5 +130,6 @@
     }
 
 %>
+        
     </body>
 </html>

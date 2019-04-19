@@ -323,8 +323,11 @@ public class Consultas extends Conexion{
         }
     }
     
-    public String cambDatos (String cor, String pas, int id){
-        String ret="";
+    public String cambDatos (String cor, String pas, int id, String npas){
+        String ret="La contraseña actual no es incorrecta";
+        if (verfContraseña(pas, id)) {
+            return ret;
+        }
         String er="Ha ocurrido un error";
         int c;
         PreparedStatement ps = null;
@@ -371,6 +374,49 @@ public class Consultas extends Conexion{
                     }
         }
         return ret;
+    }
+    
+    private boolean verfContraseña(String pas, int id){
+        boolean flag = true;
+        Validaciones valids = new Validaciones();
+        Cifrado cipher = new Cifrado();
+        if (valids.validarString(pas)){
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+            try {
+               pas = cipher.encrypt(pas);
+            } catch (Exception e) {
+                System.err.println(e.toString());
+                return flag;
+            }
+//              String exp = "select * from "+tpusu+" where cor_"+tpusu.charAt(0)+tpusu.charAt(1)
+//                    +tpusu.charAt(2)+" = '"+correo+"' and pas_"+tpusu.charAt(0)+tpusu.charAt(1)
+//                    +tpusu.charAt(2)+" = '"+contraseña+"'";
+            String exp="select id_usu from usuario where id_usu ='"+
+                    id+"' and pas_usu='"+pas+"'";
+            try {
+                pst = con.prepareStatement(exp);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    flag=false;
+                }
+            } catch (Exception e) {
+                System.err.println("error: " + e.getCause());
+                System.err.println("error 1: "+ e.toString());
+                return flag;
+            }
+            finally{
+                try {
+                    if(pst != null) pst.close();
+                    if(rs != null) rs.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+            }
+        }
+        return flag;
     }
 }
 

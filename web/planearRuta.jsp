@@ -117,8 +117,8 @@
                         while (itr.hasNext()) {                    
                             Lugar l= itr.next();
     %>
-                                <li>
-                                        <div id="lugares_<%=l.getId()%>" class="lugares" name="lugares_<%=l.getId()%>" >
+                                <li id="lugares_<%=l.getId()%>">
+                                        <div class="lugares" name="lugares_<%=l.getId()%>" >
 
                                                <div id="imagen" class="imagen">
                                                    
@@ -128,7 +128,7 @@
 
                                             <div id="infoLuga" class="infoLuga">
 
-                                                <input type="button" value="Go" class="eliminar" onclick="return aggPlace(<%=l.getId()%>, <%=l.getDuracion()%>, '<%=l.getNombre()%>')" id="go<%=l.getId()%>">
+                                                <input type="button" value="Go" id="go<%=l.getId()%>" class="eliminar" onclick="return aggPlace(<%=l.getId()%>, <%=l.getDuracion()%>, '<%=l.getNombre()%>')">
                                                 <input type="button" value="X" class="eliminar" onclick="return eliminardiv(<%=l.getId()%>)" id="eb<%=l.getId()%>">
                                                 <% // aqui se coloca el nombre del lugar porfavor no cambiar los "id" o la wea se muere!!!! %>
                                                 <h2 id="nom_lug_<%=l.getId() %>" name="<%=l.getNombre() %>" class="nomLug">

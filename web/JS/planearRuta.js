@@ -6,7 +6,8 @@ function aggPlace(i, time, name){
     ids.push(i);
     names.push(name);
     tiempo = tiempo = tiempo + time;
-    document.getElementById("go"+i).disabled;
+    document.getElementById("go"+i).disabled=true;
+    console.log("go"+i);
     //tiempo = tiempo + Integer.parse;
     //document.getElementById("tiempo").value= tiempo;
 }
