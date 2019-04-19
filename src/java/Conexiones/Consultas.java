@@ -10,6 +10,7 @@ import Entidades.Turista;
 import Conexiones.Validaciones;
 import Conexiones.Cifrado;
 import Entidades.Lugar;
+import Entidades.Mark;
 import Entidades.Tour;
 import java.sql.Array;
 import java.sql.PreparedStatement;
@@ -418,6 +419,39 @@ public class Consultas extends Conexion{
         }
         return flag;
     }
+    
+    public ArrayList<Mark> gmarks (){
+        ArrayList<Mark> arr= new ArrayList<>();
+       PreparedStatement pst = null;
+            ResultSet rs = null;
+            String exp="select nom_lug,lat_lug,lon_lug from lugar";
+            try {
+                pst = con.prepareStatement(exp);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                   Mark mark = new Mark();
+                   mark.setName(rs.getString(1));
+                   mark.setLat(rs.getString(2));
+                   mark.setLon(rs.getString(3));
+                   arr.add(mark);
+                }
+            } catch (Exception e) {
+                System.err.println("error: " + e.getCause());
+                System.err.println("error 1: "+ e.toString());
+                
+            }
+            finally{
+                try {
+                    if(pst != null) pst.close();
+                    if(rs != null) rs.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+            }
+            return arr;
+    } 
 }
 
 

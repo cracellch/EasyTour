@@ -1,0 +1,22 @@
+ 
+markers = [
+    {
+       "name":"Palacio Nacional",
+       "lat":"19.432444",
+       "lon":"-99.131193"
+    },
+    {
+       "name":"Templo Mayor",
+       "lat":"19.434601",
+       "lon":"-99.131881"},
+    {"name":"Palacio de Mineria","lat":"19.435806","lon":"-99.139507"},
+    {"name":"Catedral Metropolitana","lat":"19.434388","lon":"-99.133080"},
+    {"name":"Palacio de Bellas Artes","lat":"19.435180","lon":"-99.141210"},
+    {"name":"Torre Latinoamericana","lat":"19.433918","lon":"-99.140652"},
+    {"name":"Palacio Postal","lat":"19.435554","lon":"-99.140236"},
+    {"name":"Museo Memoria y Tolerancia","lat":"19.434226","lon":"-99.144560"},
+    {"name":"Hemiciclo a Benito Juarez","lat":"19.435092","lon":"-99.144079"},
+    {"name":"Museo del Estanquillo","lat":"19.433262","lon":"-99.136165"},
+    {"name":"Museo Mexicano del Diseño","lat":"19.433355","lon":"-99.134556"},
+    {"name":"Museo de la ciudad de Mexico","lat":"19.429241","lon":"-99.132147"}
+];
