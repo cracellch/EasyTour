@@ -3,7 +3,11 @@
     Created on : 18/03/2019, 01:25:10 AM
     Author     : usuario1
 --%>
-
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -69,7 +73,7 @@
 
 				</div>
                             
-				<form name="Registro_Turista" method="post" action="registros.jsp">
+				<form name="Registro_Turista">
 
 					<div>
 						<input type="text" id="Nombre" placeholder="Nombre(s)" name="Nombre_Turista">
@@ -102,13 +106,14 @@
 					</div>
 					
 					<div>
-						<input type="password" placeholder="Repite la contrase&ntilde;a" name="PSW_Confirmacion">
+						<input type="password" placeholder="Repite la contrase&ntilde;a" name="PSW_Confirmacion" id="valCon">
 						<img src="RESOURCE/iconos/candado-abierto.svg">
 					</div>
 
 					<div id="error"></div>
-
-					<input type="submit" name="" value="Registrarse">
+                                        
+                                            	<input type="button" value="Registrarse" onclick="sendDataT(event)" id="bttn">
+					                                        
 
 				</form>
 
@@ -186,6 +191,6 @@
 		</footer>
 
 	</div>
-
+        <script src="JS/signin.js"></script>
 </body>
 </html>

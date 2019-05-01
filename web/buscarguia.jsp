@@ -3,6 +3,11 @@
     Created on : 29/03/2019, 02:15:40 AM
     Author     : usuario1
 --%>
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="Entidades.Guia"%>
 <%@page import="Conexiones.Consultas"%>

@@ -11,8 +11,16 @@ package Entidades;
  */
 public class Lugar {
     String nombre, ubicacion, descripcion, imagen, duracion;
-    int id;
+    int id, costo;
 
+    public int getCosto() {
+        return id;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
+    }
+    
     public int getId() {
         return id;
     }

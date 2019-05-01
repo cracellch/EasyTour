@@ -3,7 +3,11 @@
     Created on : 18/03/2019, 01:26:41 AM
     Author     : usuario1
 --%>
-
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -69,7 +73,7 @@
 
 				</div>
 
-				<form name="formulario_guia" method="post" action="registros.jsp">
+				<form name="formulario_guia">
 
 					<div>
 						<input type="text" id="Nombre" placeholder="Nombre(s)" name="Nombre_Guia">
@@ -107,28 +111,28 @@
 					</div>
                                     
                                         <div>
-						<input type="text" id="Nombre" placeholder="Telefono" name="Telefono_Guia">
+						<input type="text" id="tel" placeholder="Telefono" name="Telefono_Guia">
 						<img src="RESOURCE/iconos/edit.svg">
 					</div>
                                     
                                         <div>
-						<input type="text" id="Nombre" placeholder="Direccion" name="Direccion_Guia">
+						<input type="text" id="dir" placeholder="Direccion" name="Direccion_Guia">
 						<img src="RESOURCE/iconos/edit.svg">
 					</div>
 
 					<div>
-						<input type="password" id="contra" placeholder="Contrase&ntilde;a" name="Password">
+						<input type="password" id="contra" placeholder="Contraseña" name="Password">
 						<img src="RESOURCE/iconos/candado-abierto.svg">
 					</div>
 					
 					<div>
-						<input type="password" name="valCon" placeholder="Repite la contrase&ntilde;a">
+                                            <input type="password" name="valCon" placeholder="Repite la contraseña" id="valCon">
 						<img src="RESOURCE/iconos/candado-abierto.svg">
 					</div>
 
 					<div id="error"></div>
 
-					<input type="submit" value="Enviar Peticion">
+                                        <input type="button" value="Enviar Peticion" onclick="sendDataG(event)">
 
 				</form>
 
@@ -206,6 +210,6 @@
 		</footer>
 
 	</div>
-
+        <script src="JS/signin.js"></script>
     </body>
 </html>

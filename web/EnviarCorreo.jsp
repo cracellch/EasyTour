@@ -11,7 +11,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%><%
     SecureRandom random = new SecureRandom();
     String text = new BigInteger(41, random).toString(32);
-    
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
     if (request.getMethod() == "POST") {
        Correo c = new Correo();
         c.setContrasenia("sfutsmugrwvsvonx");

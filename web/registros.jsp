@@ -8,39 +8,39 @@
 <%@page import="Entidades.Guia"%>
 <%@page import="Entidades.Turista"%>
 <%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
+<%
     if (request.getMethod() == "POST") {
         Consultas con = new Consultas();
-        if (request.getParameter("Nombre_Guia") != null) {
+        if (request.getParameter("info_Guia") != null) {
             Guia guia = new Guia();
-            guia.setNombre(request.getParameter("Nombre_Guia"));
-            guia.setApellidoP(request.getParameter("ApellidoP"));
-            guia.setApellidoM(request.getParameter("ApellidoM"));
-            guia.setCURP(request.getParameter("CURP"));
-            guia.setCorreo(request.getParameter("Correo_Guia"));
-            guia.setPassword(request.getParameter("Password"));
-            guia.setRFC(request.getParameter("RFC"));
-            guia.setTelefono(Integer.parseInt(request.getParameter("Telefono_Guia")));
-            guia.setDir(request.getParameter("Direccion_Guia"));
+            String [] info = request.getParameter("info_Guia").split(";");
+            guia.setNombre(info[0]);
+            guia.setApellidoP(info[1]);
+            guia.setApellidoM(info[2]);
+            guia.setCURP(info[3]);
+            guia.setRFC(info[4]);
+            guia.setTelefono(info[5]);
+            guia.setDir(info[6]);
+            guia.setCorreo(info[7]);
+            guia.setPassword(info[8]);
             String msj =con.registrarGuia(guia);
-            if (msj == "guia registrado") {
-                response.sendRedirect("index.jsp");
-            } else {
-                System.out.println("error");
-                //response.sendRedirect("index.jsp");
-            }
+            
+                response.getWriter().write(msj);
+            
         } else {
             Turista turista = new Turista();
-            turista.setNombre(request.getParameter("Nombre_Turista"));
-            turista.setApellidoP(request.getParameter("ApellidoP_Turista"));
-            turista.setApellidoM(request.getParameter("ApellidoM_Turista"));
-            turista.setCorreo(request.getParameter("Correo_Turista"));
-            turista.setPassword(request.getParameter("PSW_Confirmacion"));
+            String [] info = request.getParameter("info_Turista").split(",");
+            turista.setNombre(info[0]);
+            turista.setApellidoP(info[1]);
+            turista.setApellidoM(info[2]);
+            turista.setCorreo(info[3]);
+            turista.setPassword(info[4]);
             String msj=con.registrarTurista(turista);
-            if (msj == "turista registrado") {
-                response.sendRedirect("index.jsp");
-            } else {
-                System.out.println("error");
-            }
+            response.getWriter().write(msj);
         } 
     }else {
             response.sendRedirect("index.jsp");

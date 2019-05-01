@@ -3,7 +3,11 @@
     Created on : 31/03/2019, 02:17:02 PM
     Author     : usuario1
 --%>
-
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="Entidades.Tour"%>
 <%@page import="Conexiones.Consultas"%>

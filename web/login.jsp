@@ -3,6 +3,11 @@
     Created on : 20/03/2019, 03:54:07 PM
     Author     : usuario1
 --%>
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page session="true"%>
 <%@page import="Conexiones.Consultas"%>
 <%
@@ -18,11 +23,14 @@
             sesion.setAttribute("autenticado", true);
             sesion.setAttribute("id", id);
             sesion.setAttribute("tipo", tipousuario);
+            
             if(tipousuario.equals("turista")){
+                sesion.setAttribute("email", correo);
                 response.sendRedirect("planearRuta.jsp");
             } else if(tipousuario.equals("guia")){
+                sesion.setAttribute("email", correo);
                 //Redireccionar a donde corresponda
-                response.sendRedirect("planearRuta.jsp");
+                response.sendRedirect("NuevosTour.jsp");
             } else {
                 //Redireccionar a donde corresponda
                 response.sendRedirect("planearRuta.jsp");

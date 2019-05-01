@@ -43,14 +43,21 @@ public class Cifrado {
     public Guia cifGuia(Guia guia) {
         try {
             guia.setNombre(encrypt(guia.getNombre()));
+            System.out.println("pr cif 1");
             guia.setApellidoP(encrypt(guia.getApellidoP()));
+            System.out.println("pr cif 2");
             guia.setApellidoM(encrypt(guia.getApellidoM()));
+            System.out.println("pr cif 3");
             guia.setCURP(encrypt(guia.getCURP()));
+            System.out.println("pr cif 4");
             guia.setDir(encrypt(guia.getDir()));
+            System.out.println("pr cif 5");
             guia.setRFC(encrypt(guia.getRFC()));
+            System.out.println("pr cif 6");
             guia.setPassword(encrypt(guia.getPassword()));
             
         } catch (Exception e) {
+            System.err.println("error al cifrar: "+ e.toString());
             System.err.println("error al cifrar: "+ e.getMessage());
         }        
         return guia;
@@ -64,9 +71,20 @@ public class Cifrado {
             turista.setPassword(encrypt(turista.getPassword()));
             
         } catch (Exception e) {
-            System.err.println("error al cifrar: "+ e.getMessage());
+            System.err.println("error al cifrar: "+ e.toString());
         }        
         return turista;
+    }
+    
+    public String eCadena (String cadena){
+        try {
+            System.out.println("Cif pas: "+cadena);
+            cadena = encrypt(cadena);
+            System.out.println(cadena);
+        } catch (Exception e) {
+            System.err.println("error al cifrar: "+ e.toString());
+        }
+        return cadena;
     }
     
 }

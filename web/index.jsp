@@ -3,7 +3,11 @@
     Created on : 16-mar-2019, 1:18:22
     Author     : crace
 --%>
-
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

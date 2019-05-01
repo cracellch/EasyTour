@@ -3,7 +3,11 @@
     Created on : 26/03/2019, 01:17:43 AM
     Author     : usuario1
 --%>
-
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <!DOCTYPE html>
@@ -11,17 +15,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Form Tour</title>
-        <script src="JS/jquery-3.3.1.min.js"></script>
-        <script src="JS/insertRuta.js"></script>
         <link rel="stylesheet" href="CSS/insertarRuta.css"/>
         <link rel="stylesheet" href="CSS/fuentes.css"/>
         <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
-    <script src="JS/inserRutaMap.js"></script>
-    <script type="text/javascript" src="JS/markers.json"></script>
-    </head>
+        </head>
    <body>
 <%
     HttpSession sesion = request.getSession();
@@ -64,7 +64,7 @@
                             </li>
                             
                             <li>
-                                <a href="elegirGuia.jsp">
+                                <a href="ViewModificarDatos.jsp">
                                     Cuenta
                                     <div></div>
                                 </a>
@@ -121,6 +121,12 @@
 		</section>
             </div>
         </div>
+        <script src="JS/jquery-3.3.1.min.js"></script>
+        <script src="JS/insertRuta.js"></script>
+        <script src="JS/inserRutaMap.js"></script>
+        <script type="text/javascript" src="JS/markers.json"></script>
+
+    
 <%       
     }
     else{

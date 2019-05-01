@@ -10,8 +10,8 @@ package Entidades;
  * @author usuario1
  */
 public class Guia {
-    String nombre, apellidoP, apellidoM, correo, password, CURP, RFC, dir;
-    int telefono, edad, calificacion, id;
+    String nombre, apellidoP, apellidoM, correo, password, CURP, RFC, dir, telefono;
+    int edad, calificacion, id;
 
     public int getId() {
         return id;
@@ -101,11 +101,11 @@ public class Guia {
         this.dir = dir;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     

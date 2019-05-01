@@ -3,6 +3,11 @@
     Created on : 20/03/2019, 11:52:37 PM
     Author     : usuario1
 --%>
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entidades.Lugar"%>
@@ -14,7 +19,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script src="JS/planearRuta.js" type="text/javascript"></script>
+       
         <link rel="stylesheet" href="CSS/planearRuta.css"/>
         
         <link rel="stylesheet" href="CSS/fuentes.css"/>
@@ -60,7 +65,7 @@
                             </li>
                             
                             <li>
-                                <a href="elegirGuia.jsp">
+                                <a href="ViewModificarDatos.jsp">
                                     Cuenta
                                     <div></div>
                                 </a>
@@ -182,7 +187,8 @@
             
         </div>
     
-    
+         <script src="JS/planearRuta.js" type="text/javascript"></script>
+                            
     <%  
             } catch (Exception e) {
     %>

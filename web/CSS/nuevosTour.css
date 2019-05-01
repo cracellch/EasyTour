@@ -1,0 +1,64 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30/04/2019, 07:40:22 PM
+    Author     : usuario1
+*/
+
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+nav ul a,
+
+nav .brand-logo{
+  color: ##eceff1;
+}
+.sidenav-trigger{
+  color: #ffe0b2;
+}
+#Ptitle{
+  color: #424242;
+}
+
+.background{
+  background-color: #303f9f;
+}
+#wa{
+  color: white;
+}
+
+#nav, #uldrop, #bttn,#slide-out{
+   background-color: #303f9f;
+}
+
+#dnone{
+  display: none;
+}
+
+#tabla{
+  background-color: #e65100;
+  color: white;
+  border-color: : black;
+  border-radius: 20px;
+}
+
+
+
+#liOfUlDrop{
+  width: 200px;
+
+}
+
+@media only screen and (max-width : 670px) {
+  #card,#cpanel{
+    display: none;
+  }
+}

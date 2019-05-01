@@ -3,7 +3,11 @@
     Created on : 27-mar-2019, 15:43:59
     Author     : crace
 --%>
-
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <%@page import="Conexiones.ControladorCorreo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Conexiones.Consultas"%>

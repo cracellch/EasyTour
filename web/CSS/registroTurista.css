@@ -215,9 +215,9 @@ input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-i
 
 }
 
-input[type="submit"]{
 
-	width: 100px;
+#bttn{
+        width: 100px;
 	background: none;
 	border: solid 2px white;
 	border-radius: 5px;
@@ -225,25 +225,15 @@ input[type="submit"]{
 	padding: 10px;
 	margin-left: 50px;
 	margin-right: 50px;
-
-}
-
-input[type="submit"]:hover{
-
 	background-color: #FF8300;
 	border-color: #FF8300;
 	color: #274B94;
 	margin-left: 50px;
 	margin-right: 50px;
-
-
-}
-
-input[type="submit"]:focus{
-
-	outline: none;
+        outline: none;
 
 }
+
 
 section > article > form > div > img{
 

@@ -9,6 +9,11 @@
 <%@page import="Conexiones.Consultas"%>
 <%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+%>
 <!DOCTYPE html>
 <html>
     <head>

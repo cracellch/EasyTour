@@ -10,8 +10,32 @@ package Entidades;
  * @author usuario1
  */
 public class Tour {
-    String   fecha;
-    int duracion, turista, guia, costo;
+    String   fecha, nomTur, corTur;
+    int duracion, turista, guia, costo, id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomTur() {
+        return nomTur;
+    }
+
+    public void setNomTur(String nomTur) {
+        this.nomTur = nomTur;
+    }
+
+    public String getCorTur() {
+        return corTur;
+    }
+
+    public void setCorTur(String corTur) {
+        this.corTur = corTur;
+    }
 
     public int getDuracion() {
         return duracion;
