@@ -29,11 +29,14 @@
                 response.sendRedirect("planearRuta.jsp");
             } else if(tipousuario.equals("guia")){
                 sesion.setAttribute("email", correo);
+                sesion.setAttribute("nt", arr[2]);
+                System.out.println("nt: "+arr[2]);
                 //Redireccionar a donde corresponda
-                response.sendRedirect("NuevosTour.jsp");
+                response.sendRedirect("nuevosTour.jsp");
             } else {
                 //Redireccionar a donde corresponda
-                response.sendRedirect("planearRuta.jsp");
+                response.sendRedirect("adminTuristas.jsp");
+                sesion.setAttribute("email", arr[2]);
             }
             System.out.println("acceso concedido");
         } else {

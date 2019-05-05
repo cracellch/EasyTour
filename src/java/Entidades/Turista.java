@@ -10,8 +10,24 @@ package Entidades;
  * @author usuario1
  */
 public class Turista {
-    String nombre, apellidoP, apellidoM, correo, password;
+    String nombre, apellidoP, apellidoM, correo, password, status;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getNombre() {
         return nombre;
     }

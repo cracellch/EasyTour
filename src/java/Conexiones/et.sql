@@ -69,7 +69,7 @@ CREATE TABLE `guia` (
   PRIMARY KEY (`id_gui`),
   KEY `id_usu` (`id_usu`),
   CONSTRAINT `guia_ibfk_1` FOREIGN KEY (`id_usu`) REFERENCES `usuario` (`id_usu`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `guia` (
 
 LOCK TABLES `guia` WRITE;
 /*!40000 ALTER TABLE `guia` DISABLE KEYS */;
-INSERT INTO `guia` VALUES (1,'5556789824','Calle 2','25','Algo','Algo','6',2),(2,'5556789824','Calle 2','25','Algo','Algo','6',3),(3,'5556789824','Calle 2','25','Algo','Algo','6',4);
+INSERT INTO `guia` VALUES (1,'5556789824','Calle 2','25','Algo','Algo','6',2),(2,'5556789824','Calle 2','25','Algo','Algo','6',3),(3,'5556789824','Calle 2','25','Algo','Algo','6',4),(4,'1234567890','MYDyFDX/HXCq+KigfV3heTSAQbu1H7w0qgPtCR4AMqs=','0','THyBrpU4Zma2MQ/zmvoaQn+WH2Jx6pFsp1JM7L8dVVc=','K6qplFtppobZVZmGl+fEZQ==',NULL,9),(5,'5538896607','PSW7hQ0XIcOcyyIPJ8QiYks/OqUFzyAVHIVFLOMp3HI=','0','YqcRqAkqm77orhhULG+i5MUiX3zCMFJWnCj6tx88CPY=','9glWDRDwaQ95uU9veFtx8A==',NULL,10);
 /*!40000 ALTER TABLE `guia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +131,7 @@ CREATE TABLE `ruta` (
   KEY `id_tou` (`id_tou`),
   CONSTRAINT `ruta_ibfk_1` FOREIGN KEY (`id_lug`) REFERENCES `lugar` (`id_lug`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `ruta_ibfk_2` FOREIGN KEY (`id_tou`) REFERENCES `tour` (`id_tou`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `ruta` (
 
 LOCK TABLES `ruta` WRITE;
 /*!40000 ALTER TABLE `ruta` DISABLE KEYS */;
-INSERT INTO `ruta` VALUES (1,10,1),(2,11,1);
+INSERT INTO `ruta` VALUES (1,10,1),(2,11,1),(3,1,6),(4,2,6),(5,3,6),(6,4,7),(7,5,7),(8,6,7),(9,7,8),(10,6,8),(11,5,8);
 /*!40000 ALTER TABLE `ruta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +214,7 @@ CREATE TABLE `tour` (
   CONSTRAINT `tour_ibfk_1` FOREIGN KEY (`id_gui`) REFERENCES `guia` (`id_gui`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `tour_ibfk_2` FOREIGN KEY (`id_stt`) REFERENCES `statustour` (`id_stt`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `tour_ibfk_3` FOREIGN KEY (`id_usu`) REFERENCES `usuario` (`id_usu`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `tour` (
 
 LOCK TABLES `tour` WRITE;
 /*!40000 ALTER TABLE `tour` DISABLE KEYS */;
-INSERT INTO `tour` VALUES (1,'2019-04-11',200,65,1,1,1);
+INSERT INTO `tour` VALUES (1,'2019-04-11',200,65,1,1,1),(2,'2019-03-03',200,56,2,2,3),(3,'2019-03-03',200,56,1,2,4),(4,'2019-03-03',200,56,2,2,3),(5,'2019-03-03',200,56,1,2,3),(6,'2019-03-03',200,56,4,2,2),(7,'2019-03-06',250,56,4,3,2),(8,'2019-05-10',200,90,1,1,1);
 /*!40000 ALTER TABLE `tour` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +271,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id_usu`),
   KEY `id_tpu` (`id_tpu`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_tpu`) REFERENCES `tipousuario` (`id_tpu`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +280,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'fH+AW/ztebFKCfamVmusfQ==','fH+AW/ztebFKCfamVmusfQ==','fH+AW/ztebFKCfamVmusfQ==','cc@cc.com','fH+AW/ztebFKCfamVmusfQ==','activo',NULL,3),(2,'Jorge','Gomez','Perez','jorgep@gmail.com','fH+AW/ztebFKCfamVmusfQ==','activo',NULL,2),(3,'Aaron','S.','Perez','aspe@gmail.com','fH+AW/ztebFKCfamVmusfQ==','activo',NULL,2),(4,'Manuel','G.','P.','elmane@gmail.com','fH+AW/ztebFKCfamVmusfQ==','activo',NULL,2),(5,'rqlvv1iMgC7tvZlYLAOM/g==','ze8+HtMMjkq4sa2fmzAy2w==','VCXrh0YxZpXgO49KjgV/Iw==','jorgp@de.es','fH+AW/ztebFKCfamVmusfQ==','activo',NULL,3),(6,'oB6KW/WM2XmUcwpNP/ZxxQ==','iBNmsFO4LD/5aA7ql373ZA==','xtjyDiMUXmuI2QoPKrTGqA==','diasos@de.es','fH+AW/ztebFKCfamVmusfQ==','bloqueado',NULL,2),(7,'cSEitc7EZLeNAvxtvZS0GQ==','cSEitc7EZLeNAvxtvZS0GQ==','cSEitc7EZLeNAvxtvZS0GQ==','kk@kk.com','cSEitc7EZLeNAvxtvZS0GQ==','bloqueado',NULL,3),(8,'vMyADiF9OnzRes4N5gsGdw==','Pxzjw4h2aZ6ZLcj6QmFBbg==','Pxzjw4h2aZ6ZLcj6QmFBbg==','ww@ww.ww','lI9UNPt2DZRsTsMo+K41Iw==','activo',NULL,3);
+INSERT INTO `usuario` VALUES (1,'fH+AW/ztebFKCfamVmusfQ==','fH+AW/ztebFKCfamVmusfQ==','fH+AW/ztebFKCfamVmusfQ==','cc@cc.com','fH+AW/ztebFKCfamVmusfQ==','activo',NULL,3),(2,'Jorge','Gomez','Perez','jorgep@gmail.com','fH+AW/ztebFKCfamVmusfQ==','bloqueado',NULL,2),(3,'Aaron','S.','Perez','aspe@gmail.com','fH+AW/ztebFKCfamVmusfQ==','bloqueado',NULL,2),(4,'Manuel','G.','P.','elmane@gmail.com','fH+AW/ztebFKCfamVmusfQ==','bloqueado',NULL,2),(5,'rqlvv1iMgC7tvZlYLAOM/g==','ze8+HtMMjkq4sa2fmzAy2w==','VCXrh0YxZpXgO49KjgV/Iw==','jorgp@de.es','fH+AW/ztebFKCfamVmusfQ==','bloqueado',NULL,3),(6,'oB6KW/WM2XmUcwpNP/ZxxQ==','iBNmsFO4LD/5aA7ql373ZA==','xtjyDiMUXmuI2QoPKrTGqA==','diasos@de.es','fH+AW/ztebFKCfamVmusfQ==','bloqueado',NULL,2),(7,'cSEitc7EZLeNAvxtvZS0GQ==','cSEitc7EZLeNAvxtvZS0GQ==','cSEitc7EZLeNAvxtvZS0GQ==','kk@kk.com','cSEitc7EZLeNAvxtvZS0GQ==','bloqueado',NULL,3),(8,'vMyADiF9OnzRes4N5gsGdw==','Pxzjw4h2aZ6ZLcj6QmFBbg==','Pxzjw4h2aZ6ZLcj6QmFBbg==','ww@ww.ww','lI9UNPt2DZRsTsMo+K41Iw==','activo',NULL,3),(9,'hCv5NcuJzN+1WLR8Z4sDYg==','nDGIQeOGtnjxNLau/3VGLQ==','86rvbEOXHQvgs9HTNgKcSA==','gonza@de.es','com2KG2wTx0PmDu3PikSSg==','activo',NULL,2),(10,'CkdvYdgGP9ALED0n/cyIhw==','q7qXeCHQ8O/5uO03JoUg7Q==','pGzjzhgFBuSwe48C77WoEA==','redrogoalmanzana@gmail.com','com2KG2wTx0PmDu3PikSSg==','activo',NULL,2),(11,'algo',NULL,NULL,'admin@admin.com','fH+AW/ztebFKCfamVmusfQ==',NULL,NULL,1),(12,'rqlvv1iMgC7tvZlYLAOM/g==','VCXrh0YxZpXgO49KjgV/Iw==','Xnx474awe6DsWc2G7qv4aA==','jorge@perex.com','com2KG2wTx0PmDu3PikSSg==','activo',NULL,3);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,6 +398,28 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `updateStatusGuia` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatusGuia`(id int,nst varchar(20)
+)
+BEGIN
+declare idU int(11);
+select id_usu into idU from guia where id_gui = id;
+update usuario set status_usu=nst where id_usu = idU;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -408,4 +430,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-30 23:40:26
+-- Dump completed on 2019-05-04 16:49:40

@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : Modificar cuenta
     Created on : 14/04/2019, 09:20:14 PM
     Author     : usuario1
@@ -10,7 +10,7 @@
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
     HttpSession sesion = request.getSession();
-    if (sesion.getAttribute("tipo").equals("turista") && request.getMethod() == "POST") {
+    if (sesion.getAttribute("autenticado") != null && sesion.getAttribute("tipo").equals("turista") && request.getMethod() == "POST") {
         response.setContentType("text/html");
         Consultas con = new Consultas();
         String res="";
@@ -28,9 +28,9 @@
             System.out.println(pass);
             res= con.cambDatos(correo, pass, id , "");
         }
-        
+
         response.getWriter().write(res);
-        
+
     }
     else{
         response.sendRedirect("logout.jsp");

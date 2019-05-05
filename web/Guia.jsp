@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : Guia.jsp
     Created on : 18/03/2019, 01:58:46 AM
     Author     : usuario1
@@ -8,6 +8,7 @@
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
 %>
+<%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

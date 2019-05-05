@@ -2,6 +2,7 @@ var ids = [];
 var tiempo = 0;
 var names= [];
 function aggPlace(i, time, name){
+    alert(name);
     document.getElementById("eb"+i).style.display = 'none';
     ids.push(i);
     names.push(name);

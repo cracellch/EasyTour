@@ -179,7 +179,7 @@ public class Consultas extends Conexion{
     }
     
     public String [] Login (String correo, String contraseña){
-        String [] arr= new String [2];
+        String [] arr= new String [3];
         Validaciones  valids = new Validaciones();
         Cifrado cipher = new Cifrado();
         if (valids.validarString(correo) && valids.validarString(contraseña)){
@@ -193,7 +193,7 @@ public class Consultas extends Conexion{
 //              String exp = "select * from "+tpusu+" where cor_"+tpusu.charAt(0)+tpusu.charAt(1)
 //                    +tpusu.charAt(2)+" = '"+correo+"' and pas_"+tpusu.charAt(0)+tpusu.charAt(1)
 //                    +tpusu.charAt(2)+" = '"+contraseña+"'";
-            String exp="select id_usu, nom_tpu from usuario natural join tipousuario where cor_usu ='"+
+            String exp="select id_usu, cor_usu, nom_tpu from usuario natural join tipousuario where cor_usu ='"+
                     correo+"' and pas_usu='"+contraseña+"'";
             try {
                 pst = con.prepareStatement(exp);
@@ -201,9 +201,27 @@ public class Consultas extends Conexion{
                 while (rs.next()) {                    
                     arr[0] = rs.getString(1);
                     System.out.println("arr1 "+arr[0]);
-                    arr[1] = rs.getString(2);
+                    arr[1] = rs.getString(3);
                     System.out.println("arr2 "+arr[1]);
-                    
+                    arr[2] = rs.getString(2);
+                    System.out.println("arr3 "+arr[2]);
+                }
+                if (arr[1].equals("guia")) {
+                    System.out.println("Adentro");
+                    //Obtenemos el ID del guía
+                    exp="select id_gui from guia natural join usuario where id_usu="+arr[0];
+                    pst = con.prepareStatement(exp);
+                    rs = pst.executeQuery();
+                    while (rs.next()) {                    
+                        arr[0] = rs.getString(1);
+                    }
+                    //Obtenemos sus solicitudes nuevas (el número nada más); porque se ocupa para el front
+                    exp="select count(*) from tour where id_gui="+arr[0];
+                    pst = con.prepareStatement(exp);
+                    rs = pst.executeQuery();
+                    while (rs.next()) {                    
+                        arr[2] = rs.getString(1);
+                    }
                 }
             } catch (Exception e) {
                 System.err.println("error: " + e.getCause());
@@ -278,7 +296,7 @@ public class Consultas extends Conexion{
         ResultSet rs= null;
         Guia g = new Guia();
         try {
-            String exp = "select id_gui, nom_usu, app_usu, apm_usu, cor_usu from usuario natural join guia where id_gui NOT IN "
+            String exp = "select id_gui, nom_usu, app_usu, apm_usu, cor_usu from usuario natural join guia where status_usu ='activo' and id_gui NOT IN "
                     + "(select id_gui from tour where fec_tou='" + fecha+"') limit 1";
             
             ps= con.prepareStatement(exp);
@@ -527,40 +545,6 @@ public class Consultas extends Conexion{
             return arr;
     }
     
-    public ArrayList<Tour> getNTour(int id){
-       ArrayList<Tour> arr= new ArrayList<>();
-       PreparedStatement pst = null;
-            ResultSet rs = null;
-            String exp="select id_tou,fec_tou,dur_tou,nom_usu,cor_usu from tour where id_gui="+ id+" and id_stt=1";
-            try {
-                pst = con.prepareStatement(exp);
-                rs = pst.executeQuery();
-                while (rs.next()) {
-                   Tour t = new Tour();
-                   t.setId(rs.getInt(1));
-                   t.setFecha(rs.getString(2));
-                   t.setDuracion(rs.getInt(3));
-                   t.setNomTur(rs.getString(4));
-                   t.setCorTur(rs.getString(5));
-                   arr.add(t);
-                }
-            } catch (Exception e) {
-                System.err.println("error: " + e.getCause());
-                System.err.println("error 1: "+ e.toString());
-                
-            }
-            finally{
-                try {
-                    if(pst != null) pst.close();
-                    if(rs != null) rs.close();
-                    if(getConexion() != null) getConexion().close();
-                } catch (Exception ex) {
-                    System.err.println("error: " + ex.toString());
-                    System.err.println("error: " + ex.getCause());
-                    }
-            }
-            return arr;
-    }
     
 }
 

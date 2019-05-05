@@ -4,6 +4,7 @@
     Author     : usuario1
 --%>
 
+<%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -12,12 +13,12 @@
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
     HttpSession sesion = request.getSession();
-    if (sesion.getAttribute("tipo").equals("turista") && request.getMethod() == "GET") {
+    if (sesion.getAttribute("autenticado") != null && sesion.getAttribute("tipo").equals("turista") && request.getMethod() == "GET") {
         String correo = sesion.getAttribute("email").toString();
 
 
 %>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -49,12 +50,12 @@
              <a href="#"><img class="circle" src="RESOURCE/iconos/account.png"></a>
              <a href="#"><span class="email" id="spemail"><%= correo%></span></a>
            </div></li>
-           <li><div class="divider"><div class="divider"><div class="divider"></div>
+           <li><div class="divider"><div class="divider"><div class="divider"></div></div></div></li>
            <li><a href="planearRuta.jsp" id="wa"><i class="material-icons left orange-text">room</i>Planear Ruta</a></li>
            <li><a href="#" id="wa"><i class="material-icons left orange-text">mode_edit</i>Modificar cuenta</a></li>
            <li class="active" id="wa"><a href="#" id="wa"><i class="material-icons left orange-text">mode_edit</i>Modificar cuenta</a></li>
 
-           <li><div class="divider"><div class="divider"><div class="divider"></div>
+           <li><div class="divider"><div class="divider"><div class="divider"></div></div></div></li>
            <li><a href="logout.jsp" id="wa"><i class="material-icons left orange-text">exit_to_app</i>Cerrar Sesión</a></li>
          </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>

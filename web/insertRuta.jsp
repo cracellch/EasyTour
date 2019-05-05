@@ -3,24 +3,27 @@
     Created on : 26/03/2019, 01:17:43 AM
     Author     : usuario1
 --%>
+<%@page import="java.nio.charset.StandardCharsets.*"%>
+
 <%
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
 %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="utf-8"%>
 <%@page session="true"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
+       <meta charset="utf-8"/>
         <title>Form Tour</title>
         <link rel="stylesheet" href="CSS/insertarRuta.css"/>
         <link rel="stylesheet" href="CSS/fuentes.css"/>
         <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    
         </head>
    <body>
 <%
@@ -31,7 +34,12 @@
         if (request.getParameter("rut").equals("") || request.getParameter("rut").equals(null)) {
                 response.sendRedirect("planearRuta.jsp");
             }
-        String [] array  = request.getParameter("nomsrut").split(",");
+       
+        String value = new String(request.getParameter("nomsrut").getBytes("UTF-8")); 
+        String [] array  = value.split(",");
+        for(int i=0; i<array.length; i++){
+            System.out.println(array[i]);
+        }
         String ids = request.getParameter("rut");
         String duracion= request.getParameter("tiemporuta");
         
@@ -121,6 +129,7 @@
 		</section>
             </div>
         </div>
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
         <script src="JS/jquery-3.3.1.min.js"></script>
         <script src="JS/insertRuta.js"></script>
         <script src="JS/inserRutaMap.js"></script>

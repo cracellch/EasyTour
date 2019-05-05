@@ -10,7 +10,15 @@ package Entidades;
  * @author usuario1
  */
 public class Guia {
-    String nombre, apellidoP, apellidoM, correo, password, CURP, RFC, dir, telefono;
+    String nombre, apellidoP, apellidoM, correo, password, CURP, RFC, dir, telefono, status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     int edad, calificacion, id;
 
     public int getId() {

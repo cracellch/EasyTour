@@ -76,6 +76,40 @@ public class Cifrado {
         return turista;
     }
     
+    public Guia decGuia(Guia guia) {
+        try {
+            guia.setNombre(decrypt(guia.getNombre()));
+            System.out.println("pr dec 1");
+            guia.setApellidoP(decrypt(guia.getApellidoP()));
+            System.out.println("pr dec 2");
+            guia.setApellidoM(decrypt(guia.getApellidoM()));
+            System.out.println("pr dec 3");
+            guia.setCURP(decrypt(guia.getCURP()));
+            System.out.println("pr dec 4");
+            guia.setDir(decrypt(guia.getDir()));
+            System.out.println("pr dec 5");
+            guia.setRFC(decrypt(guia.getRFC()));
+            System.out.println("pr dec 6");
+        } catch (Exception e) {
+            System.err.println("error al cifrar: "+ e.toString());
+            System.err.println("error al cifrar: "+ e.getMessage());
+        }        
+        return guia;
+    }
+    
+    public Turista decTurista(Turista turista) {
+        try {
+            turista.setNombre(decrypt(turista.getNombre()));
+            turista.setApellidoP(decrypt(turista.getApellidoP()));
+            turista.setApellidoM(decrypt(turista.getApellidoM()));
+            turista.setPassword(decrypt(turista.getPassword()));
+            
+        } catch (Exception e) {
+            System.err.println("error al cifrar: "+ e.toString());
+        }        
+        return turista;
+    }
+    
     public String eCadena (String cadena){
         try {
             System.out.println("Cif pas: "+cadena);

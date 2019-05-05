@@ -169,9 +169,9 @@
                             </ul>
                             <form method="post" action="insertRuta.jsp"  name="formularioruta" id="formularioruta"> <%//este formulario no se muestra, se usa para enviar la ruta %>
 
-                                <input type="hidden" name='nomsrut' id="ruta" value=''>
-                                <input type="hidden" name="tiemporuta" id="tiempo" value="">
-                                <input type="hidden" name="rut" id="rut" value="">
+                                <input type="text" name='nomsrut' id="ruta" value=''>
+                                <input type="text" name="tiemporuta" id="tiempo" value="">
+                                <input type="text" name="rut" id="rut" value="">
 
                             </form>
 
