@@ -45,7 +45,7 @@
         <ul class="right hide-on-med-and-down">
           <li class="active"><a href="#"><i class="material-icons left">account_circle</i>Turistas</a></li>
           <li><a href="adminGuias.jsp"><i class="material-icons left">account_circle</i>Guias</a></li>
-          <li><a href="adminTours"><i class="material-icons left">room</i>Tour</a></li>
+          <li><a href="adminTours.jsp"><i class="material-icons left">room</i>Tour</a></li>
           <li><a class="dropdown-trigger" href="#!" data-target="uldrop"><i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
 
@@ -86,7 +86,11 @@
           <div class="divider"></div>
           <div class="row">
             <div class="col s12 m12 l12">
-              <table class="responsive-table striped">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">search</i>
+                <input placeholder="Busca un turista por su nombre" id="in" onkeydown="filtrartablas()" type="text" class="validate">
+              </div>
+              <table class="striped" id="tabla">
                  <thead>
                    <tr>
                        <th>Nombre</th>
@@ -145,6 +149,7 @@
     <script src="JS/jquery-3.3.1.min.js"></script>
     <script src="JS/materialize.js"></script>
     <script src="JS/admin.js"></script>
+    <script src="JS/busq.js"></script>
   </body>
   <%
           } catch(Exception e) {

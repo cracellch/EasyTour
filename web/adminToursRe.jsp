@@ -1,6 +1,6 @@
-<%--
-    Document   : adminTours
-    Created on : 4/05/2019, 04:21:55 PM
+<%-- 
+    Document   : adminToursRe
+    Created on : 4/05/2019, 09:03:32 PM
     Author     : usuario1
 --%>
 
@@ -24,7 +24,7 @@
           int id = Integer.parseInt(sesion.getAttribute("id").toString());
           String correo = sesion.getAttribute("email").toString();
           Queries con = new Queries();
-          ArrayList<Tour> array = con.getTours(1);
+          ArrayList<Tour> array = con.getTours(4);
           Gson gson = new Gson();
  %>
 
@@ -32,7 +32,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Tours por confirmar</title>
+    <title>Tours realizados</title>
 
     <!-- CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -83,15 +83,15 @@
       <div class="col s12 m12 l12">
         <div class="container">
           <div class="row">
-            <h2 class="center col s12 m12 l12" id="Ptitle">Tours por confirmar</h2>
+            <h2 class="center col s12 m12 l12" id="Ptitle">Tours Realizados</h2>
           </div>
           <div class="row">
                <div class="col s12">
                  <ul class="tabs tabs-fixed-width tabs-transparent" id="ctabs">
-                   <li class="tab col s3" id="bgt"><a href="#" class="active" id="tta">Pendientes</a></li>
-                   <li class="tab col s3" id="bgt"><a href="adminToursCo.jsp" id="tt">Confirmados</a></li>
-                   <li class="tab col s3" id="bgt"><a href="adminToursCa.jsp" id="tt">Cancelados</a></li>
-                   <li class="tab col s3" id="bgt"><a href="adminToursRe.jsp" id="tt">Realizados</a></li>
+                   <li class="tab col s3" id="bgt"><a href="adminTours.jsp" id="tt">Tours por confirmar</a></li>
+                   <li class="tab col s3" id="bgt"><a href="adminToursCo.jsp" id="tt">Tours confirmados</a></li>
+                   <li class="tab col s3" id="bgt"><a href="adminToursCa.jsp" id="tt">Tours cancelados</a></li>
+                   <li class="tab col s3" id="bgt"><a href="#" class="active" id="tta">Tours realizados</a></li>
                  </ul>
                </div>
           </div>
@@ -138,7 +138,7 @@
                                     <div class="col s12">
                                       <div class="card">
                                         <div class="card-content">
-
+                                          
                                            <ul class="collection with-header">
                                                 <li class="collection-header"><h4>Ruta</h4></li>
                                                 <%
@@ -185,23 +185,3 @@
 
 %>
 </html>
-
-
-
-<div class="card col m6 s12 l6">
-   <div class="card-image waves-effect waves-block waves-light">
-     <img class="activator" src="images/office.jpg">
-   </div>
-   <div class="card-content">
-     <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-     <p><a href="#">This is a link</a></p>
-   </div>
-   <div class="card-reveal">
-     <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-     <p>Here is some more information about this product that is only revealed once clicked on.</p>
-   </div>
-   <div class="card-action">
-     <a class="waves-effect waves-light btn-small"><i class="material-icons left">cloud</i>button</a>
-     <a class="waves-effect waves-light btn-small"><i class="material-icons left">cloud</i>button</a>
-   </div>
-</div>

@@ -3,13 +3,14 @@
     Created on : 29/03/2019, 02:15:40 AM
     Author     : usuario1
 --%>
+
 <%
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
 %>
 <%@page import="com.google.gson.Gson"%>
-<%@page import="Entidades.Guia"%>
+<%@page import="Entidades.miniGuia"%>
 <%@page import="Conexiones.Consultas"%>
 <%@page session="true"%>
 <%
@@ -18,7 +19,7 @@
         response.setContentType("text/html");
         Consultas con = new Consultas();
         String date = request.getParameter("date");
-        Guia g = con.asigGuia(date);
+        miniGuia g = con.asigGuia(date);
         Gson gson = new Gson();
         String data = gson.toJson(g);
         System.out.println("data: "+data);

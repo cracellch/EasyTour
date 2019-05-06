@@ -12,6 +12,7 @@ import Conexiones.Cifrado;
 import Entidades.Lugar;
 import Entidades.Mark;
 import Entidades.Tour;
+import Entidades.miniGuia;
 import java.sql.Array;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -291,10 +292,11 @@ public class Consultas extends Conexion{
         return lugares;
     }
 
-    public Guia asigGuia (String fecha){
+    public miniGuia asigGuia (String fecha){
         PreparedStatement ps= null;
+        Cifrado cf= new Cifrado();
         ResultSet rs= null;
-        Guia g = new Guia();
+        miniGuia g = new miniGuia();
         try {
             String exp = "select id_gui, nom_usu, app_usu, apm_usu, cor_usu from usuario natural join guia where status_usu ='activo' and id_gui NOT IN "
                     + "(select id_gui from tour where fec_tou='" + fecha+"') limit 1";
@@ -303,9 +305,9 @@ public class Consultas extends Conexion{
             rs = ps.executeQuery();
             while(rs.next()){
                 g.setId(rs.getInt(1));
-                g.setNombre(rs.getString(2));
-                g.setApellidoP(rs.getString(3));
-                g.setApellidoM(rs.getString(4));
+                g.setNombre(cf.dCadena(rs.getString(2)));
+                g.setApellidoP(cf.dCadena(rs.getString(3)));
+                g.setApellidoM(cf.dCadena(rs.getString(4)));
                 g.setCorreo(rs.getString(5));
             }
             //System.out.println("reg: "+reg);

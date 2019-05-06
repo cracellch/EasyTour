@@ -8,6 +8,7 @@ package Conexiones;
 import Entidades.Guia;
 import Entidades.Tour;
 import Entidades.Turista;
+import Entidades.miniGuia;
 import com.google.gson.Gson;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -323,6 +324,119 @@ public class Queries extends Conexion{
             return arr;
     }
     
-}
-
+    public ArrayList<Tour> getTours(int id){
+       Cifrado cf = new Cifrado();
+       ArrayList<Tour> arr= new ArrayList<>();
+       PreparedStatement pst = null;
+            ResultSet rs = null;
+            String exp="select id_tou,fec_tou,dur_tou,nom_usu,app_usu,apm_usu,cor_usu,id_gui from tour natural join usuario where id_stt="+id;
+            try {
+                pst = con.prepareStatement(exp);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                   Tour t = new Tour();
+                   String nom, app, apm;
+                   t.setId(rs.getInt(1));
+                   t.setFecha(rs.getString(2));
+                   t.setDuracion(rs.getInt(3));
+                   nom = cf.dCadena(rs.getString(4));
+                   app = cf.dCadena(rs.getString(5));;
+                   apm = cf.dCadena(rs.getString(6));;
+                   t.setNomTur(nom+ " "+app+" "+apm);
+                   t.setCorTur(rs.getString(7));
+                   t.setRuta(getRuta(rs.getInt(1)));
+                   t.setG(getGuiaTour(rs.getInt(8)));
+                   arr.add(t);
+                }
+            } catch (Exception e) {
+                System.err.println("error: " + e.getCause());
+                System.err.println("error 1: "+ e.toString());
+            }
+            finally{
+                try {
+                    if(pst != null) pst.close();
+                    if(rs != null) rs.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+            }
+            return arr;
+    }
     
+    public ArrayList<Tour> getToursC(){
+       Cifrado cf = new Cifrado();
+       ArrayList<Tour> arr= new ArrayList<>();
+       PreparedStatement pst = null;
+            ResultSet rs = null;
+            String exp="select id_tou,fec_tou,dur_tou,nom_usu,app_usu,apm_usu,cor_usu,id_gui,com_can from cancelacion natural join tour natural join usuario where id_stt=3";
+            try {
+                pst = con.prepareStatement(exp);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                   Tour t = new Tour();
+                   String nom, app, apm;
+                   t.setId(rs.getInt(1));
+                   t.setFecha(rs.getString(2));
+                   t.setDuracion(rs.getInt(3));
+                   nom = cf.dCadena(rs.getString(4));
+                   app = cf.dCadena(rs.getString(5));;
+                   apm = cf.dCadena(rs.getString(6));;
+                   t.setNomTur(nom+ " "+app+" "+apm);
+                   t.setCorTur(rs.getString(7));
+                   t.setRuta(getRuta(rs.getInt(1)));
+                   t.setG(getGuiaTour(rs.getInt(8)));
+                   t.setComentario(rs.getString(9));
+                   arr.add(t);
+                }
+            } catch (Exception e) {
+                System.err.println("error: " + e.getCause());
+                System.err.println("error 1: "+ e.toString());
+            }
+            finally{
+                try {
+                    if(pst != null) pst.close();
+                    if(rs != null) rs.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+            }
+            return arr;
+    }
+    
+    private miniGuia getGuiaTour(int id){
+        miniGuia g = new miniGuia();
+        Cifrado cipher = new Cifrado();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String exp="select nom_usu,app_usu,apm_usu,cor_usu from guia natural join usuario where id_gui="+id;
+        try {
+                pst = con.prepareStatement(exp);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                   g.setNombre(cipher.dCadena(rs.getString(1)));
+                   g.setApellidoP(cipher.dCadena(rs.getString(2)));
+                   g.setApellidoM(cipher.dCadena(rs.getString(3)));
+                   g.setCorreo(rs.getString(4));
+                }
+            } catch (Exception e) {
+                System.err.println("error: " + e.getCause());
+                System.err.println("error 1: "+ e.toString());
+            }
+            finally{
+                try {
+                    if(pst != null) pst.close();
+                    if(rs != null) rs.close();
+                    //if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+            }
+            return g;
+    }
+    
+}

@@ -120,5 +120,14 @@ public class Cifrado {
         }
         return cadena;
     }
-    
+    public String dCadena (String cadena){
+        try {
+            System.out.println("Cif pas: "+cadena);
+            cadena = decrypt(cadena);
+            System.out.println(cadena);
+        } catch (Exception e) {
+            System.err.println("error al cifrar: "+ e.toString());
+        }
+        return cadena;
+    }
 }

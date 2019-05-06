@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 3/05/2019, 12:49:18 AM
+    Created on : 4/05/2019, 08:36:45 PM
     Author     : usuario1
 */
 
@@ -27,6 +27,18 @@ nav .brand-logo{
   color: white;
 }
 
+#bgt{
+    background-color: #303f9f;
+}
+
+#tta{
+    color: orange;
+}
+
+#tt{
+    color: #fafafa;
+}
+
 #nav, #uldrop, #bttn,#slide-out{
    background-color: #303f9f;
 }
@@ -35,12 +47,14 @@ nav .brand-logo{
   display: none;
 }
 
+#tabla{
+  background-color: #e65100;
+  color: white;
+  border-color: black;
+  border-radius: 20px;
+}
 
 
 #liOfUlDrop{
   width: 200px;
 }
-
-
-
-

@@ -1,3 +1,18 @@
+//Inicia el frame
+(function($){
+  $(function(){
+
+    $('.sidenav').sidenav();
+    $('.parallax').parallax();
+    $('.tabs').tabs();
+    $(".dropdown-trigger").dropdown({
+      coverTrigger: false,
+      constrainWidth: false
+    });
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
+
+
 var ids = [];
 var tiempo = 0;
 var names= [];
