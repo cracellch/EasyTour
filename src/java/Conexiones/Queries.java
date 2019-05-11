@@ -6,6 +6,7 @@
 package Conexiones;
 
 import Entidades.Guia;
+import Entidades.Lugar;
 import Entidades.Tour;
 import Entidades.Turista;
 import Entidades.miniGuia;
@@ -437,6 +438,152 @@ public class Queries extends Conexion{
                     }
             }
             return g;
+    }
+    
+    public String [] getDatosRuta(String ruta){
+        int costo = 0;
+        int duracion = 0;
+        String [] datos = new String[4];
+        datos [0] = "iniciamos";
+        String[] array= ruta.split(":");
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String exp="select nom_lug, dur_lug, cos_lug, nom_ubi from lugar natural join ubicacion where id_lug = "+array[0];
+        for (int i = 1; i < array.length; i++) {
+            exp += " or id_lug= "+array[i];
+        }
+        System.out.println("exp: "+exp);
+        try {
+                pst = con.prepareStatement(exp);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                   datos[0] += ","+rs.getString(1);
+                   duracion += rs.getInt(2);
+                   costo += rs.getInt(3);
+                   datos[3] = rs.getString(4);
+                }
+                datos[1] = String.valueOf(duracion);
+                datos[2] = String.valueOf(costo);
+            } catch (Exception e) {
+                System.err.println("error: " + e.getCause());
+                System.err.println("error 1: "+ e.toString());
+            }
+            finally{
+                try {
+                    if(pst != null) pst.close();
+                    if(rs != null) rs.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+            }
+        return datos;
+    }
+    
+    public Tour getDatosTour(int id){
+       Tour t = new Tour();
+       PreparedStatement pst = null;
+            ResultSet rs = null;
+            String exp="select id_tou,fec_tou,dur_tou,cos_tou,nom_stt,id_gui from tour natural join statustour where id_usu="+id+" and id_stt = 1 union select id_tou,fec_tou,dur_tou,cos_tou,nom_stt,id_gui from tour natural join statustour where id_usu="+id+" and id_stt = 2";
+            try {
+                pst = con.prepareStatement(exp);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                   t.setId(rs.getInt(1));
+                   t.setFecha(rs.getString(2));
+                   t.setDuracion(rs.getInt(3));
+                   t.setCosto(rs.getInt(4));
+                   t.setStatus(rs.getString(5));
+                   t.setG(getGuiaTour(rs.getInt(6)));
+                }
+            } catch (Exception e) {
+                System.err.println("error: " + e.getCause());
+                System.err.println("error 1: "+ e.toString());
+            }
+            finally{
+                try {
+                    if(pst != null) pst.close();
+                    if(rs != null) rs.close();
+                    //if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+            }
+            return t;
+    }
+    
+    public ArrayList<Lugar> getLugares (int idTour){
+        ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+        PreparedStatement ps= null;
+        ResultSet rs= null;
+        try {
+           String exp = "select nom_lug,img_lug,dur_lug,cos_lug,nom_ubi from ruta natural join lugar natural join ubicacion where id_tou="+idTour;
+            System.out.println("exp: "+exp);
+            ps= con.prepareStatement(exp);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                Lugar l = new Lugar();
+                //l.setId(rs.getInt(2));
+                l.setNombre(rs.getString(1));
+                //System.out.println(l.getNombre());
+                //l.setDescripcion(rs.getString(4));
+                l.setImagen(rs.getString(2));
+                l.setDuracion(rs.getString(3));
+                l.setCosto(rs.getInt(4));
+                l.setUbicacion(rs.getString(5));
+
+//                    l.setLat(rs.getInt(7));
+//                    l.setLon(rs.getInt(8));
+                lugares.add(l);
+            }
+        } catch (Exception e) {
+            System.err.println("error: "+e.toString());
+        }
+        finally{
+                try {
+                    if(ps != null) ps.close();
+                    if(rs != null) rs.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+        }
+
+        return lugares;
+    }
+    
+        public String cancelarTour(int id, int tour, String pass, String comen){
+        String ret = "Contraseña incorrecta";
+        CallableStatement cl = null;
+        Consultas consultas = new Consultas();
+        if (consultas.verfContraseña(pass, id)) {
+            return ret;
+        }
+         try {
+            cl = con.prepareCall("{call cancelarTour(?,?)}");
+                    cl.setInt(1, tour);
+                    cl.setString(2, comen);
+            cl.executeUpdate();
+            ret = "cancelado";
+            System.out.println("update bien");
+        } catch (Exception e) {
+            ret = "Ha ocurrido un error";
+            System.err.println("error: "+e.toString());
+        }
+        finally{
+                try {
+                    if(cl != null) cl.close();
+                    if(getConexion() != null) getConexion().close();
+                } catch (Exception ex) {
+                    ret = "Ha ocurrido un error";
+                    System.err.println("error: " + ex.toString());
+                    System.err.println("error: " + ex.getCause());
+                    }
+        }
+        return ret;
     }
     
 }

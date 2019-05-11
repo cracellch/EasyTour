@@ -3,26 +3,24 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/*
-    Created on : 5/05/2019, 08:22:17 PM
+/* 
+    Created on : 9/05/2019, 01:18:45 AM
     Author     : usuario1
 */
-
 nav ul a,
 
 nav .brand-logo{
   color: #eceff1;
 }
 
-#nov{
+#nov, #form{
     display: none;
 }
 
-ul#ullug > li > div{
-
-  /*    width: 300px;*/
-      height: 350px;
-
+#mapaid{
+  width: 600px;
+  height: 400px;
+  align-content: center;
 }
 
 .sidenav-trigger{
@@ -89,13 +87,8 @@ ul#ullug > li > div{
   margin-bottom: 30px;
 }
 
- #mapaid{
-  width: 600px;
-  height: 400px;
-}
-
-/*@media only screen and (max-width : 670px) {
-  #card{
-    display: block;
+/*@media only screen and (max-width : 600px) {
+  #mapid{
+  display: none;
   }
 }*/

@@ -2,23 +2,35 @@
  function validCorreo(email, reemail){
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(email) || email!=reemail) {
-        alert("cor: false");
+        alert("Ingresa un correo válido");
         return false
     } else {
-        alert("cor: true");
+        
         return true;
     }
 
 }
 function validNom(string){
     var letters = /^([A-Za-zñÑÁÉÍÓÚñáéíóú]+\s{0,1}){1,2}$/;
-    alert("nom: "+letters.test(string));
-    return letters.test(string);
+	if(letters.test(string)){
+		return true;
+	}
+	else {
+		alert ("Ingresa un nombre válido");
+		return false;
+	}
+     
 }
 function validCel(num){
     var reg= /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-    alert("num "+reg.test(num));
-    return reg.test(num)
+    if(reg.test(num)){
+		return true;
+	}
+	else {
+		alert ("Ingresa un telefono válido");
+		return false;
+	}
+    
     //Formatos válidos
 //    (123) 456-7890
 //    (123)456-7890
@@ -30,29 +42,43 @@ function validCel(num){
 }
 function validCurp(curp){
     var reg = /^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$/;
-        alert("curp "+reg.test(curp));
-    return reg.test(curp)
+    if(reg.test(curp)){
+		return true;
+	}
+	else {
+		alert ("Ingresa un curp válido");
+		return false;
+	}
 
 }
 
 function validateRFC(rfc) {
     var reg= /^[a-zA-Z]{3,4}(\d{6})((\D|\d){3})?$/;
-    alert("rfc "+reg.test(rfc));
-    return reg.test(rfc);
+    if(reg.test(rfc)){
+		return true;
+	}
+	else {
+		alert ("Ingresa un RFC válido");
+		return false;
+	}
 
 }
 
 function validDir(dir){
-    alert("dir "+dir)
     var reg = /^([A-Za-zñÑÁÉÍÓÚñáéíóú]+\s)+\d{1,4}[,]?\s([A-Za-zñÑÁÉÍÓÚñáéíóú]+\s?){1,3}$/;
-    alert("dir "+reg.test(dir));
-    return reg.test(dir);
+    if(reg.test(dir)){
+		return true;
+	}
+	else {
+		alert ("Ingresa un telefono válido");
+		return false;
+	}
 }
 
 function validPass(pass, npass){
     var reg= /^[\w+*&%$#¿?!¡]{8,16}$/;
     if (!reg.test(pass) || npass!= pass){
-       alert("pass: false");
+       alert("Ingresa una contraseña de 8 a 16 caracteres.");
       return false;
     }
     else{

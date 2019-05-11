@@ -300,7 +300,7 @@ public class Consultas extends Conexion{
         try {
             String exp = "select id_gui, nom_usu, app_usu, apm_usu, cor_usu from usuario natural join guia where status_usu ='activo' and id_gui NOT IN "
                     + "(select id_gui from tour where fec_tou='" + fecha+"') limit 1";
-            
+            System.out.println("exp: "+exp);
             ps= con.prepareStatement(exp);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -327,10 +327,11 @@ public class Consultas extends Conexion{
         return g;
     }
     
-    public void saveTour(String ruts, Tour tour){
+    public boolean saveTour(String ruts, Tour tour){
         PreparedStatement ps= null;
         ResultSet rs= null;
         int c = 0;
+        boolean flag = false; 
         String generatedColumns[] = { "ID" };
         try {
             String exp = "insert into tour values(0,'"+tour.getFecha()+"',"+tour.getCosto()+","+tour.getDuracion()
@@ -342,11 +343,14 @@ public class Consultas extends Conexion{
             if (rs.next()) {
                 int id = rs.getInt(1);
                 System.out.println("Inserted ID -" + id); // muestra el ID insertado
-                saveRuta(id, ruts);
+                if (saveRuta(id, ruts)) {
+                    flag = true;
+                }
             }
             
         } catch (Exception e) {
             System.err.println("error: "+e.toString());
+            flag = false;
         }
         finally{
                 try {
@@ -358,14 +362,16 @@ public class Consultas extends Conexion{
                     System.err.println("error: " + ex.getCause());
                     }
         }
+        return flag;
         
     }
     
-    public void saveRuta(int id, String ruts){
+    public boolean saveRuta(int id, String ruts){
         PreparedStatement ps= null;
         ResultSet rs= null;
         int c = 0;
-        String [] ids= ruts.split(",");
+        boolean flag = false;
+        String [] ids= ruts.split(":");
         try {
             String exp = "insert into ruta values (0,"+ids[0]+","+id+")";
             for (int i = 1; i < ids.length; i++) {
@@ -373,9 +379,10 @@ public class Consultas extends Conexion{
             }
             ps= con.prepareStatement(exp);
             c = ps.executeUpdate();
-            
+            flag = true;
         } catch (Exception e) {
             System.err.println("error: "+e.toString());
+            flag = false;
         }
         finally{
                 try {
@@ -386,6 +393,7 @@ public class Consultas extends Conexion{
                     System.err.println("error: " + ex.getCause());
                     }
         }
+        return flag;
     }
     
     public String cambDatos (String cor, String pas, int id, String npas){
@@ -471,7 +479,7 @@ public class Consultas extends Conexion{
         return ret;
     }
     
-    private boolean verfContraseña(String pas, int id){
+    public boolean verfContraseña(String pas, int id){
         boolean flag = true;
         Validaciones valids = new Validaciones();
         Cifrado cipher = new Cifrado();

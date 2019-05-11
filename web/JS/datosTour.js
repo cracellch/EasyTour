@@ -1,3 +1,8 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 var mymap;
 var lugares;
 $("document").ready(function () {
@@ -9,7 +14,8 @@ $("document").ready(function () {
                         id: 'mapbox.streets'
                 }).addTo(mymap);
             lugares = document.getElementById("collap").getElementsByTagName("li").length;
-            for (var i = 1; i < lugares; i++) {
+            
+            for (var i = 0; i < lugares; i++) {
                   var nom = document.getElementById("nombrelugar"+i).innerHTML;
                     console.log(nom);
                     for ( var j=0; j < markers.length; j++ ) 
@@ -30,57 +36,58 @@ $("document").ready(function () {
       coverTrigger: false,
       constrainWidth: false
     });
-    $("#butMF").hide();
-    $("#butVG").click(function () {
-        var date = $("#fecha").val();
-        if (date != null && date != '') {
-            $.post("buscarguia.jsp",
-                    {
-                        date: date
-                    },
-                    function (data, status) {
-                        alert("Data: " + data + "\nStatus: " + status);
-                        var json= JSON.parse(data);
-                        console.log(json);
-                        $("#nomguia").val(json.nombre +" "+json.apellidoP +" "+json.apellidoM);
-                        $("#corguia").val(json.correo);
-                        $("#ag").val(json.id);
-                        $("#butVG").hide();
-                        $("#butMF").show();
-                    });
-        }
-    });
-    $("#butMF").click(function (){
-        var date = $("#fecha").val();
-        var duracion = $("#tiempo").val();
-        var costo = $("#costo").val();
-        var ruts = $("#important").val();
-        var guia = $("#ag").val();
-        alert(date + duracion + costo + ruts + guia);
-        if (date != null && date != '') {
-            $.post("guardarTour.jsp",
-                    {
-                        date: date,
-                        tiempo: duracion,
-                        costo: costo,
-                        important: ruts,
-                        guia: guia
-                    },
-                    function (data, status) {
-                        if(action(data)){
-                            alert(data);
-                            location.replace("datosTour.jsp");
-                        }
-                        else {
-                            alert(data);
-                        }
-                    });
-        }
-    });
-
 });
 
+function cancelar(tour){
+    var reason, password;
+    reason = $("#textarea1").val();
+    password = $("#pass").val();
+    
+    if (validPass(password) && validRazon(reason)) {
+         $.post("cancelarTour.jsp",
+                    {
+                        tour: tour,
+                        why: reason,
+                        pass: password
+                    },
+                    function (data, status) {
+                       if (action(data)) {
+                           alert("Se ha cancelado su tour");
+                           location.replace("planearRuta.jsp");
+                        } else {
+                           alert(data);
+                       }
+                    });
+    }   
+
+}
+
+
+function validPass(pass){
+    var reg= /^[\w+*&%$#¿?!¡]{8,16}$/;
+    if (!reg.test(pass)){
+       alert("Ingresa una contraseña de 8 a 16 caracteres.");
+      return false;
+    }
+    else{
+        alert("pass: true");
+        return true;
+    }
+}
+
+function validRazon(string){
+    var letters = /^([A-Za-zñÑÁÉÍÓÚñáéíóú]+\s{0,1})+$/;
+	if(letters.test(string)){
+		return true;
+	}
+	else {
+		alert ("En la razón solo puedes poner letras.");
+		return false;
+	}
+     
+}
+
 function action(data){
-    var reg = /Tour\sguardado\scon\séxito/;
+    var reg = /cancelado/;
     return reg.test(data);
 }

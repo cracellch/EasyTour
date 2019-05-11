@@ -37,7 +37,7 @@
         <a id="logo-container" href="#" class="brand-logo">EasyTour</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="planearRuta.jsp"><i class="material-icons left">room</i>Planear Ruta</a></li>
-          <li ><a href="#"><i class="material-icons left">mode_edit</i>Modificar Datos</a></li>
+          <li ><a href="datosTour.jsp"><i class="material-icons left">mode_edit</i>Tour actual</a></li>
           <li class="active"><a href="#"><i class="material-icons left">mode_edit</i>Modificar Datos</a></li>
 
           <li><a class="dropdown-trigger" href="#!" data-target="uldrop"><i class="material-icons right">arrow_drop_down</i></a></li>
@@ -52,7 +52,7 @@
            </div></li>
            <li><div class="divider"><div class="divider"><div class="divider"></div></div></div></li>
            <li><a href="planearRuta.jsp" id="wa"><i class="material-icons left orange-text">room</i>Planear Ruta</a></li>
-           <li><a href="#" id="wa"><i class="material-icons left orange-text">mode_edit</i>Modificar cuenta</a></li>
+           <li><a href="datosTour.jsp" id="wa"><i class="material-icons left orange-text">mode_edit</i>Tour actual</a></li>
            <li class="active" id="wa"><a href="#" id="wa"><i class="material-icons left orange-text">mode_edit</i>Modificar cuenta</a></li>
 
            <li><div class="divider"><div class="divider"><div class="divider"></div></div></div></li>
@@ -183,12 +183,12 @@
                <div class="valign-wrapper col l9 ">
                  <h5 id="cptext" class="white-text"></h5>
                </div>
-              </div>
+             </div>
           </div>
 
       </div>
 
-      </div>
+    </div>
 
 <!--  Scripts-->
     <script src="JS/jquery-3.3.1.min.js"></script>

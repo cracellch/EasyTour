@@ -1,6 +1,6 @@
-<%--
-    Document   : planearRuta
-    Created on : 20/03/2019, 11:52:37 PM
+<%-- 
+    Document   : planearRutaB
+    Created on : 6/05/2019, 11:44:20 AM
     Author     : usuario1
 --%>
 <%
@@ -24,7 +24,7 @@
     <!-- CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="CSS/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="CSS/planRuta.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="CSS/planRutaB.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   </head>
   <body>
@@ -34,7 +34,7 @@
             try {
                     Consultas con = new Consultas();
                     String correo = sesion.getAttribute("email").toString();
-                    String ubicacion = "Zocalo";
+                    String ubicacion = "Bellas Artes";
                     ArrayList<Lugar> lugares = con.lugares(ubicacion);
 
     %>
@@ -87,19 +87,19 @@
             <div class="col s12 m12 l12">
               <div class="card">
                 <blockquote class="text-align center">
-                    Te ofrecemos 2 zonas para tu tour; ¡elige la que más te guste! <br>
+                  Te ofrecemos 2 zonas para tu tour; ¡elige la que más te guste! <br>
                   Da click en las tarjetas para saber más del sitio.
                 </blockquote>
                 <div class="card-tabs">
                   <ul class="tabs tabs-fixed-width tabs-transparent" id="ctabs">
-                    <li class="tab" id="tcor"><a href="" class="active">Zocalo</a></li>
-                    <li class="tab" id="tpass"><a href="" onclick="location.replace('planearRutaB.jsp')">Bellas Artes</a></li>
+                    <li class="tab" id="tcor"><a href="" onclick="location.replace('planearRuta.jsp')">Zocalo</a></li>
+                    <li class="tab active" id="tpass"><a href="" class="active">Bellas Artes</a></li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-
+          
           <div id="test1" class="col s12">
             <div class="row">
                 <ul id="ullug">
@@ -133,7 +133,7 @@
                        </div>
                        <div class="card-tabs">
                             <ul class="tabs tabs-fixed-width">
-                              <li class="tab" id="tabAgg" onclick="addPlace('<%= nom%>','<%= img%>',<%= idl%>,<%= l.getDuracion()%>)"><a class="waves-effect waves-light" id="txttab"><i class="material-icons center">check</i></a></li>
+                              <li class="tab" id="tabAgg" onclick="addPlace('<%= nom%>','<%= img%>',<%= idl%>,<%= l.getDuracion()%>,<%= l.getCosto()%>)"><a class="waves-effect waves-light" id="txttab"><i class="material-icons center">check</i></a></li>
                               <li class="tab" id="tabQui<%= idl%>" onclick="delPlace(<%= idl%>)"><a class="waves-effect waves-light" id="txttab"><i class="material-icons center">clear</i></a></li>
                             </ul>
                        </div>
@@ -162,13 +162,20 @@
                    </ul>
                  </div>
                  <div class="card-content">
-                   <h6 id="Ptitle">Ruta en Zócalo:</h6>
+                   <h6 id="Ptitle">Ruta en Bellas Artes:</h6>
                    <ul class="collection" id="collection">
                        
                    </ul>
-                   <button class="right btn waves-effect waves-light" id="bttn1" type="button" onclick="mandar(event)">Continuar
-                      <i class="material-icons right">send</i>
-                   </button>
+                   <form action="insertRuta.jsp" method="post" id="formularioruta">
+                       <input type="hidden" id="ubic" name ="ubic" value="Bellas Artes" disabled>
+                       <input type="hidden" id="rut" name ="rut" disabled>
+                       <input type="hidden" id="ruta" name ="nomsrut" disabled>
+                       <input type="hidden" id="tiempo" name ="tiemporuta" disabled>
+                       <input type="hidden" id="costo" name ="costo" disabled>
+                       <button class="right btn waves-effect waves-light" id="bttn1" type="button" onclick="mandar(event)">Continuar
+                            <i class="material-icons right">send</i>
+                       </button>
+                   </form>
                 </div>
              </div>
              <div class="divider"></div><div class="divider"></div><div class="divider"></div>

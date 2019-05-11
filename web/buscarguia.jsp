@@ -14,7 +14,9 @@
 <%@page import="Conexiones.Consultas"%>
 <%@page session="true"%>
 <%
-    HttpSession sesion = request.getSession();
+    
+    //response.getWriter().write("Esta perro");
+   HttpSession sesion = request.getSession();
     if (sesion.getAttribute("autenticado") != null && sesion.getAttribute("tipo").equals("turista") && request.getParameter("date") != null && request.getMethod() == "POST") {
         response.setContentType("text/html");
         Consultas con = new Consultas();
@@ -26,6 +28,7 @@
         response.getWriter().write(data);
         //out.println(reg);
     }
+    
 %>
 
 <%-- <%@page contentType="text/html" pageEncoding="UTF-8"%>

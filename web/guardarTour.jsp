@@ -24,7 +24,9 @@
         try {
             ruta = request.getParameter("important");
             System.out.println("1"+ruta);
-            tour.setDuracion(Integer.parseInt(request.getParameter("tiempo"))); 
+            String [] array = request.getParameter("tiempo").split(" ");
+            System.out.println("array:"+array[0]);
+            tour.setDuracion(Integer.parseInt(array[0])); 
             System.out.println("2"+tour.getDuracion());
             tour.setCosto(Integer.parseInt(request.getParameter("costo")));
             System.out.println("3"+tour.getCosto());
@@ -34,9 +36,14 @@
             System.out.println("5"+tour.getTurista());
             tour.setGuia(Integer.parseInt(request.getParameter("guia").trim()));
             System.out.println("6"+tour.getGuia());
-            con.saveTour(ruta, tour);
-            out.println("Tour guardado con éxito");
-            } catch (Exception e) {
+            if (con.saveTour(ruta, tour)) {
+                 sesion.setAttribute("ruta", "");
+                 out.println("Tour guardado con éxito");
+            } else {
+                  out.println("Ha ocurrido un error");
+            }
+            
+        } catch (Exception e) {
                System.err.println(e.toString());
                out.println("Ha ocurrido un error");
             }
