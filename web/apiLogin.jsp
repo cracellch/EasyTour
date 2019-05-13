@@ -9,8 +9,8 @@
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
 
-    String correo = request.getParameter("correoI");
-    String contraseña = request.getParameter("passwordI");
+    String correo = request.getParameter("email");
+    String contraseña = request.getParameter("password");
     try {
         ConApi con= new ConApi();
         String ret = con.Login(correo,contraseña);
